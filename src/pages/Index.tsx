@@ -1,12 +1,27 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import StickyHeader from "@/components/StickyHeader";
+import HeroSection from "@/components/HeroSection";
+import StatsSection from "@/components/StatsSection";
+import DirectorQuote from "@/components/DirectorQuote";
+import LeadMagnet from "@/components/LeadMagnet";
+import EventsSection from "@/components/EventsSection";
+import BlogSection from "@/components/BlogSection";
+import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <StickyHeader />
+      <HeroSection />
+      <StatsSection />
+      <DirectorQuote />
+      <LeadMagnet />
+      <EventsSection />
+      <BlogSection />
+      <Footer />
+      <WhatsAppButton />
+      <ExitIntentPopup />
     </div>
   );
 };
