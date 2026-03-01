@@ -5,6 +5,10 @@ import DirectorQuote from "@/components/DirectorQuote";
 import LeadMagnet from "@/components/LeadMagnet";
 import EventsSection from "@/components/EventsSection";
 import BlogSection from "@/components/BlogSection";
+import TimelineSection from "@/components/TimelineSection";
+import DesoDetailsSection from "@/components/DesoDetailsSection";
+import PartnersSection from "@/components/PartnersSection";
+import WhyCanadaSection from "@/components/WhyCanadaSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
@@ -19,6 +23,10 @@ const Index = () => {
       <LeadMagnet />
       <EventsSection />
       <BlogSection />
+      <TimelineSection />
+      <DesoDetailsSection />
+      <PartnersSection />
+      <WhyCanadaSection />
       <Footer />
       <WhatsAppButton />
       <ExitIntentPopup />
