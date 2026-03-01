@@ -10,7 +10,7 @@ const points = [
 
 const WhyCanadaSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-secondary">
+    <section className="py-16 md:py-24 bg-background">
       <div className="container max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -56,7 +56,7 @@ const StatsSection = () => {
   }, []);
 
   return (
-    <section id="apropos" className="py-16 md:py-24 bg-secondary">
+    <section id="apropos" className="py-16 md:py-24 bg-background">
       <div className="container" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
