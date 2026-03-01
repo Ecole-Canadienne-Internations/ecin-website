@@ -3,9 +3,9 @@ import { Shield, Users, GraduationCap, Building2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 const stats = [
-  { icon: Users, value: 500, suffix: "+", label: "Étudiants accompagnés" },
-  { icon: GraduationCap, value: 98, suffix: "%", label: "Réussite au DESO" },
-  { icon: Building2, value: 12, suffix: "", label: "Universités partenaires" },
+  { icon: Users, value: 50, suffix: "+", label: "Étudiants accompagnés" },
+  { icon: GraduationCap, value: 100, suffix: "%", label: "Réussite au DESO" },
+  { icon: Building2, value: 8, suffix: "+", label: "Universités partenaires" },
 ];
 
 function useCountUp(target: number, inView: boolean) {
