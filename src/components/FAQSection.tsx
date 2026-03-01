@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MessageCircle } from "lucide-react";
+
 import {
   Accordion,
   AccordionContent,
@@ -67,31 +67,6 @@ const FAQSection = () => {
           </Accordion>
         </motion.div>
 
-        {/* CTA Block */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-12 text-center bg-secondary rounded-2xl p-8 md:p-10"
-        >
-          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-            <MessageCircle className="w-6 h-6 text-primary" />
-          </div>
-          <h3 className="text-xl font-bold text-foreground mb-2">
-            Vous avez d'autres questions ?
-          </h3>
-          <p className="text-muted-foreground text-sm mb-6 max-w-md mx-auto">
-            Prenez rendez-vous avec un conseiller pédagogique pour un accompagnement personnalisé.
-          </p>
-          <a
-            href="https://wa.me/237681263743?text=Bonjour%2C%20je%20souhaite%20prendre%20rendez-vous%20avec%20un%20conseiller."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
-          >
-            Prendre rendez-vous
-          </a>
-        </motion.div>
       </div>
     </section>
   );

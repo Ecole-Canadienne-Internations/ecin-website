@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { Shield, Users, GraduationCap, Building2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 const stats = [
-  { icon: Users, value: 50, suffix: "+", label: "Étudiants accompagnés" },
-  { icon: GraduationCap, value: 100, suffix: "%", label: "Réussite au DESO" },
-  { icon: Building2, value: 8, suffix: "+", label: "Universités partenaires" },
+  { value: 50, suffix: "+", label: "Étudiants accompagnés" },
+  { value: 100, suffix: "%", label: "Réussite au DESO" },
+  { value: 8, suffix: "+", label: "Universités partenaires" },
 ];
 
 function useCountUp(target: number, inView: boolean) {
@@ -29,14 +28,11 @@ function useCountUp(target: number, inView: boolean) {
   return count;
 }
 
-const StatCard = ({ icon: Icon, value, suffix, label, inView }: { icon: any; value: number; suffix: string; label: string; inView: boolean }) => {
+const StatCard = ({ value, suffix, label, inView }: { value: number; suffix: string; label: string; inView: boolean }) => {
   const count = useCountUp(value, inView);
   return (
-    <div className="flex flex-col items-center gap-3">
-      <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center">
-        <Icon className="w-7 h-7 text-accent-foreground" />
-      </div>
-      <span className="text-4xl font-extrabold text-foreground">{count}{suffix}</span>
+    <div className="flex flex-col items-center gap-2">
+      <span className="text-4xl font-extrabold text-primary">{count}{suffix}</span>
       <span className="text-sm text-muted-foreground font-medium">{label}</span>
     </div>
   );
@@ -64,7 +60,6 @@ const StatsSection = () => {
           viewport={{ once: true }}
           className="flex items-center justify-center gap-2 mb-12"
         >
-          <Shield className="w-5 h-5 text-primary" />
           <p className="text-base font-medium text-foreground">
             École agréée par le Ministère de l'Éducation de l'Ontario —{" "}
             <span className="text-primary font-bold">BDICE 882009</span>

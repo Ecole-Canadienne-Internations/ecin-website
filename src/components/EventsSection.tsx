@@ -1,4 +1,4 @@
-import { Calendar, MapPin } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 
 const events = [
@@ -33,10 +33,7 @@ const EventsSection = () => {
                 {ev.date}
               </div>
               <h3 className="text-lg font-bold text-foreground mb-3">{ev.title}</h3>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-5">
-                <MapPin className="w-4 h-4" />
-                {ev.location}
-              </div>
+              <p className="text-sm text-muted-foreground mb-5">{ev.location}</p>
               <a
                 href="#inscription"
                 className="inline-block w-full text-center bg-primary text-primary-foreground py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity"

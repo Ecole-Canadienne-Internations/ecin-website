@@ -1,18 +1,7 @@
-import { useState } from "react";
 import { Download } from "lucide-react";
 import { motion } from "framer-motion";
 
 const LeadMagnet = () => {
-  const [form, setForm] = useState({ name: "", whatsapp: "", email: "" });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const msg = encodeURIComponent(
-      `Bonjour, je souhaite recevoir le guide gratuit.\nNom: ${form.name}\nEmail: ${form.email}`
-    );
-    window.open(`https://wa.me/237681263743?text=${msg}`, "_blank");
-  };
-
   return (
     <section className="py-16 md:py-24 bg-background">
       <div className="container max-w-2xl mx-auto">
@@ -31,38 +20,14 @@ const LeadMagnet = () => {
           <p className="text-muted-foreground mb-8">
             5 étapes pour envoyer votre enfant étudier au Canada depuis le Cameroun.
           </p>
-          <form onSubmit={handleSubmit} className="space-y-4 text-left">
-            <input
-              type="text"
-              placeholder="Votre nom complet"
-              required
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
-            />
-            <input
-              type="tel"
-              placeholder="Numéro WhatsApp"
-              required
-              value={form.whatsapp}
-              onChange={(e) => setForm({ ...form, whatsapp: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
-            />
-            <input
-              type="email"
-              placeholder="Adresse email"
-              required
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
-            />
-            <button
-              type="submit"
-              className="w-full py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors"
-            >
-              Recevoir le guide gratuitement
-            </button>
-          </form>
+          <a
+            href="https://wa.me/237681263743?text=Bonjour%2C%20je%20souhaite%20recevoir%20le%20guide%20gratuit."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-primary text-primary-foreground px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+          >
+            Recevoir le guide gratuitement
+          </a>
         </motion.div>
       </div>
     </section>
