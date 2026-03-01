@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 const articles = [
@@ -43,9 +42,7 @@ const BlogSection = () => {
               <p className="text-primary text-sm font-semibold mb-2">{a.date}</p>
               <h3 className="text-lg font-bold text-foreground mb-2">{a.title}</h3>
               <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{a.excerpt}</p>
-              <a href="#" className="inline-flex items-center gap-1 text-primary text-sm font-semibold hover:gap-2 transition-all">
-                Lire la suite <ArrowRight className="w-4 h-4" />
-              </a>
+              <span className="text-primary text-sm font-semibold">Lire la suite →</span>
             </motion.article>
           ))}
         </div>

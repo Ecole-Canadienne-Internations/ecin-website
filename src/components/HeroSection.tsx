@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+
 import { motion } from "framer-motion";
 import heroImg from "@/assets/hero-students.png";
 
@@ -18,13 +18,6 @@ const HeroSection = () => {
           <p className="mt-6 text-lg text-muted-foreground max-w-lg">
             Un cursus d'excellence de l'Ontario à Yaoundé pour ouvrir les portes des meilleures universités mondiales.
           </p>
-          <a
-            href="#inscription"
-            className="mt-8 inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 py-3.5 rounded-lg text-base font-semibold hover:opacity-90 transition-opacity"
-          >
-            Démarrer mon inscription
-            <ArrowRight className="w-5 h-5" />
-          </a>
         </motion.div>
 
         <motion.div

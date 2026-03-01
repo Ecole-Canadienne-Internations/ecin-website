@@ -1,4 +1,3 @@
-import { BookOpen, Clock, Heart, Languages } from "lucide-react";
 import { motion } from "framer-motion";
 
 const obligatorySubjects = [
@@ -14,10 +13,10 @@ const obligatorySubjects = [
 ];
 
 const highlights = [
-  { icon: BookOpen, label: "30 crédits", detail: "18 obligatoires + 12 optionnels" },
-  { icon: Clock, label: "4 ans", detail: "De la 9e à la 12e année" },
-  { icon: Heart, label: "40 heures", detail: "Service communautaire requis" },
-  { icon: Languages, label: "TPCL", detail: "Test de compétence linguistique" },
+  { label: "30 crédits", detail: "18 obligatoires + 12 optionnels" },
+  { label: "4 ans", detail: "De la 9e à la 12e année" },
+  { label: "40 heures", detail: "Service communautaire requis" },
+  { label: "TPCL", detail: "Test de compétence linguistique" },
 ];
 
 const DesoDetailsSection = () => {
@@ -38,7 +37,6 @@ const DesoDetailsSection = () => {
           </p>
         </motion.div>
 
-        {/* Key highlights */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {highlights.map((h, i) => (
             <motion.div
@@ -49,16 +47,12 @@ const DesoDetailsSection = () => {
               transition={{ delay: i * 0.1 }}
               className="bg-background rounded-lg p-5 text-center border border-border"
             >
-              <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center mx-auto mb-3">
-                <h.icon className="w-5 h-5 text-primary" />
-              </div>
-              <p className="font-bold text-foreground">{h.label}</p>
-              <p className="text-xs text-muted-foreground mt-1">{h.detail}</p>
+              <p className="text-2xl font-extrabold text-primary mb-1">{h.label}</p>
+              <p className="text-xs text-muted-foreground">{h.detail}</p>
             </motion.div>
           ))}
         </div>
 
-        {/* Subjects grid */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

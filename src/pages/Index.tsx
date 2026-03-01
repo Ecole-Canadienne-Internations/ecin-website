@@ -11,8 +11,6 @@ import EventsSection from "@/components/EventsSection";
 import BlogSection from "@/components/BlogSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import ExitIntentPopup from "@/components/ExitIntentPopup";
 
 const Index = () => {
   return (
@@ -30,8 +28,6 @@ const Index = () => {
       <BlogSection />
       <FAQSection />
       <Footer />
-      <WhatsAppButton />
-      <ExitIntentPopup />
     </div>
   );
 };
