@@ -1,21 +1,23 @@
-import { GraduationCap, Building2, FileCheck } from "lucide-react";
 import { motion } from "framer-motion";
+import timelineDeso from "@/assets/timeline-deso.png";
+import timelineUniversity from "@/assets/timeline-university.png";
+import timelineVisa from "@/assets/timeline-visa.png";
 
 const steps = [
   {
-    icon: GraduationCap,
+    image: timelineDeso,
     title: "Réussite du DÉSO",
     description: "Obtenez votre Diplôme d'Études Secondaires de l'Ontario, reconnu internationalement.",
     step: "01",
   },
   {
-    icon: Building2,
+    image: timelineUniversity,
     title: "Admission Universitaire",
     description: "Accédez directement à nos universités partenaires : La Cité, Université de Moncton, Collège Boréal.",
     step: "02",
   },
   {
-    icon: FileCheck,
+    image: timelineVisa,
     title: "Permis d'Études & Visa",
     description: "Bénéficiez d'un accompagnement complet pour votre permis d'études et votre visa canadien.",
     step: "03",
@@ -42,7 +44,7 @@ const TimelineSection = () => {
 
         <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">
           {/* Connecting line (desktop) */}
-          <div className="hidden md:block absolute top-[3.5rem] left-[16.6%] right-[16.6%] h-0.5 bg-border" />
+          <div className="hidden md:block absolute top-[6rem] left-[16.6%] right-[16.6%] h-0.5 bg-border" />
 
           {steps.map((s, i) => (
             <motion.div
@@ -53,8 +55,12 @@ const TimelineSection = () => {
               transition={{ delay: i * 0.15 }}
               className="relative flex flex-col items-center text-center"
             >
-              <div className="w-[4.5rem] h-[4.5rem] rounded-full bg-accent flex items-center justify-center relative z-10 border-4 border-background">
-                <s.icon className="w-7 h-7 text-primary" />
+              <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-background shadow-lg relative z-10 bg-secondary">
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <span className="mt-4 text-xs font-bold text-primary tracking-widest uppercase">
                 Étape {s.step}

@@ -40,7 +40,7 @@ const PartnersSection = () => {
               <img
                 src={p.logo}
                 alt={p.name}
-                className="h-16 md:h-20 object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                className="h-16 md:h-20 object-contain transition-all duration-300 hover:scale-105"
               />
             </motion.div>
           ))}

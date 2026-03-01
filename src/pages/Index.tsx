@@ -2,13 +2,14 @@ import StickyHeader from "@/components/StickyHeader";
 import HeroSection from "@/components/HeroSection";
 import StatsSection from "@/components/StatsSection";
 import DirectorQuote from "@/components/DirectorQuote";
+import PartnersSection from "@/components/PartnersSection";
+import WhyCanadaSection from "@/components/WhyCanadaSection";
+import TimelineSection from "@/components/TimelineSection";
+import DesoDetailsSection from "@/components/DesoDetailsSection";
 import LeadMagnet from "@/components/LeadMagnet";
 import EventsSection from "@/components/EventsSection";
 import BlogSection from "@/components/BlogSection";
-import TimelineSection from "@/components/TimelineSection";
-import DesoDetailsSection from "@/components/DesoDetailsSection";
-import PartnersSection from "@/components/PartnersSection";
-import WhyCanadaSection from "@/components/WhyCanadaSection";
+import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
@@ -20,13 +21,14 @@ const Index = () => {
       <HeroSection />
       <StatsSection />
       <DirectorQuote />
+      <PartnersSection />
+      <WhyCanadaSection />
+      <TimelineSection />
+      <DesoDetailsSection />
       <LeadMagnet />
       <EventsSection />
       <BlogSection />
-      <TimelineSection />
-      <DesoDetailsSection />
-      <PartnersSection />
-      <WhyCanadaSection />
+      <FAQSection />
       <Footer />
       <WhatsAppButton />
       <ExitIntentPopup />
