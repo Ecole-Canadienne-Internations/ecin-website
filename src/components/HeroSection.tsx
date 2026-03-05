@@ -1,18 +1,18 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import heroBg from "@/assets/hero-bg.png";
+import heroStudents from "@/assets/hero-students.png";
 
 const HeroSection = () => {
   return (
-    <section id="accueil" className="relative pt-20 md:pt-20 min-h-[85vh] flex items-center overflow-hidden">
-      {/* Background image */}
+    <section id="accueil" className="relative pt-20 md:pt-20 min-h-[85vh] flex items-center overflow-hidden bg-foreground">
+      {/* Background image — full, unscaled, visible */}
       <div className="absolute inset-0 z-0">
         <img
-          src={heroBg}
-          alt=""
-          className="w-full h-full object-cover object-center"
+          src={heroStudents}
+          alt="Étudiants ECIN"
+          className="w-full h-full object-contain object-center"
+          style={{ objectPosition: "center" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/70 to-foreground/30" />
+        <div className="absolute inset-0 bg-foreground/60" />
       </div>
 
       <div className="container relative z-10 py-16 md:py-24">
@@ -36,12 +36,6 @@ const HeroSection = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                to="/admissions"
-                className="inline-flex items-center justify-center bg-primary text-primary-foreground px-7 py-3.5 rounded-full text-sm font-bold hover:opacity-90 transition-opacity"
-              >
-                Découvrir nos programmes
-              </Link>
               <a
                 href="https://wa.me/237681263743?text=Bonjour%2C%20je%20souhaite%20en%20savoir%20plus."
                 target="_blank"
