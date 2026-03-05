@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
 
+const featured = {
+  date: "5 Fév 2026",
+  title: "La vie au campus ECIN : immersion totale",
+  excerpt: "Découvrez le quotidien de nos étudiants dans un environnement bilingue et multiculturel au cœur de Yaoundé. Un cadre d'apprentissage unique qui prépare aux standards internationaux.",
+  tag: "Campus",
+};
+
 const articles = [
-  {
-    date: "5 Fév 2026",
-    title: "La vie au campus ECIN : immersion totale",
-    excerpt: "Découvrez le quotidien de nos étudiants dans un environnement bilingue et multiculturel au cœur de Yaoundé.",
-    tag: "Campus",
-  },
   {
     date: "18 Jan 2026",
     title: "5 conseils pour réussir son expatriation au Canada",
@@ -32,31 +33,56 @@ const BlogSection = () => {
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">Articles & Actualités</h2>
           </div>
-          <span className="text-primary text-sm font-semibold cursor-pointer hover:underline">Voir tous les articles →</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {articles.map((a, i) => (
-            <motion.article
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-shadow"
-            >
-              {/* Color accent bar */}
-              <div className="h-1.5 bg-primary w-full" />
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-xs font-bold text-primary bg-accent px-2 py-0.5 rounded">{a.tag}</span>
-                  <span className="text-xs text-muted-foreground">{a.date}</span>
+        {/* UOF-inspired layout: featured + sidebar */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          {/* Featured article — large card */}
+          <motion.article
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-3 group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-shadow flex flex-col"
+          >
+            <div className="h-2 bg-primary w-full" />
+            <div className="p-8 flex-1 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-xs font-bold text-primary bg-accent px-2.5 py-1 rounded">{featured.tag}</span>
+                  <span className="text-xs text-muted-foreground">{featured.date}</span>
                 </div>
-                <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">{a.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{a.excerpt}</p>
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors leading-tight">
+                  {featured.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed text-base">{featured.excerpt}</p>
               </div>
-            </motion.article>
-          ))}
+              <span className="text-primary text-sm font-semibold mt-6 cursor-pointer hover:underline inline-block">Lire l'article →</span>
+            </div>
+          </motion.article>
+
+          {/* Sidebar articles */}
+          <div className="lg:col-span-2 flex flex-col gap-6">
+            {articles.map((a, i) => (
+              <motion.article
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-shadow flex-1"
+              >
+                <div className="h-1.5 bg-primary w-full" />
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-xs font-bold text-primary bg-accent px-2 py-0.5 rounded">{a.tag}</span>
+                    <span className="text-xs text-muted-foreground">{a.date}</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">{a.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{a.excerpt}</p>
+                </div>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
