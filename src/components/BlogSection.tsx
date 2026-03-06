@@ -1,24 +1,30 @@
 import { motion } from "framer-motion";
+import blogIta from "@/assets/blog-ita.png";
+import blogHautCommissaire from "@/assets/blog-haut-commissaire.png";
+import alumniCatalyst from "@/assets/alumni-catalyst.png";
 
 const featured = {
   date: "5 Fév 2026",
   title: "La vie au campus ECIN : immersion totale",
   excerpt: "Découvrez le quotidien de nos étudiants dans un environnement bilingue et multiculturel au cœur de Yaoundé. Un cadre d'apprentissage unique qui prépare aux standards internationaux.",
   tag: "Campus",
+  image: alumniCatalyst,
 };
 
 const articles = [
   {
     date: "18 Jan 2026",
-    title: "5 conseils pour réussir son expatriation au Canada",
-    excerpt: "De la préparation des documents au choc culturel, nos anciens élèves partagent leurs meilleures astuces.",
-    tag: "Conseils",
+    title: "Rencontre avec la Haute Commissaire du Canada au Cameroun",
+    excerpt: "Un moment historique pour l'ECIN, symbole de la reconnaissance de notre engagement éducatif.",
+    tag: "Événement",
+    image: blogHautCommissaire,
   },
   {
     date: "2 Jan 2026",
-    title: "DESO vs Baccalauréat : quelles différences ?",
-    excerpt: "Comprendre les atouts du Diplôme d'Études Secondaires de l'Ontario face au système francophone traditionnel.",
+    title: "Programme ITA : la demande croissante en compétences numériques",
+    excerpt: "Importance stratégique des certifications informatiques et opportunités professionnelles pour nos étudiants.",
     tag: "Académique",
+    image: blogIta,
   },
 ];
 
@@ -35,16 +41,15 @@ const BlogSection = () => {
           </div>
         </div>
 
-        {/* UOF-inspired layout: featured + sidebar */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-          {/* Featured article — large card */}
+          {/* Featured article */}
           <motion.article
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="lg:col-span-3 group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-shadow flex flex-col"
           >
-            <div className="h-2 bg-primary w-full" />
+            <img src={featured.image} alt={featured.title} className="w-full h-56 md:h-72 object-cover" />
             <div className="p-8 flex-1 flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-4">
@@ -71,7 +76,7 @@ const BlogSection = () => {
                 transition={{ delay: i * 0.1 }}
                 className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-shadow flex-1"
               >
-                <div className="h-1.5 bg-primary w-full" />
+                <img src={a.image} alt={a.title} className="w-full h-36 object-cover" />
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-xs font-bold text-primary bg-accent px-2 py-0.5 rounded">{a.tag}</span>

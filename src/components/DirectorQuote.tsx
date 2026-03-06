@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
+import directorPhoto from "@/assets/director-photo.png";
 
 const DirectorQuote = () => {
   return (
@@ -22,9 +23,11 @@ const DirectorQuote = () => {
           </blockquote>
 
           <div className="mt-8 flex flex-col items-center gap-2">
-            <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center text-primary font-bold text-lg">
-              DG
-            </div>
+            <img
+              src={directorPhoto}
+              alt="Directeur Général ECIN"
+              className="w-20 h-20 rounded-full object-cover border-2 border-primary"
+            />
             <p className="font-bold text-foreground">Direction Générale</p>
             <p className="text-sm text-muted-foreground">École Canadienne Inter-Nations</p>
           </div>
