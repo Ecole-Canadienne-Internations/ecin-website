@@ -1,9 +1,11 @@
 import PageLayout from "@/components/PageLayout";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
-import heroEcin from "@/assets/hero-ecin.png";
+import coverPrepaCanada from "@/assets/cover-prepa-canada.png";
+import coverPrepaFrance from "@/assets/cover-prepa-france.png";
+import coverSportEtudes from "@/assets/cover-sport-etudes.png";
 
-const prepasData: Record<string, { title: string; subtitle: string; badge: string; description: string; features: string[] }> = {
+const prepasData: Record<string, { title: string; subtitle: string; badge: string; description: string; features: string[]; cover: string }> = {
   canada: {
     title: "Prépa Canada",
     subtitle: "Post-BAC vers les universités canadiennes",
@@ -16,6 +18,7 @@ const prepasData: Record<string, { title: string; subtitle: string; badge: strin
       "Immersion dans les standards académiques canadiens",
       "Suivi personnalisé jusqu'à l'arrivée au Canada",
     ],
+    cover: coverPrepaCanada,
   },
   "france-angleterre": {
     title: "Prépa France & Angleterre",
@@ -29,6 +32,7 @@ const prepasData: Record<string, { title: string; subtitle: string; badge: strin
       "Simulation d'entretiens et coaching personnalisé",
       "Suivi de la procédure de visa",
     ],
+    cover: coverPrepaFrance,
   },
   "sport-etudes": {
     title: "Sport-Études",
@@ -42,6 +46,7 @@ const prepasData: Record<string, { title: string; subtitle: string; badge: strin
       "Bourses sportives pour universités canadiennes",
       "Réseau d'universités avec programmes sportifs d'élite",
     ],
+    cover: coverSportEtudes,
   },
 };
 
@@ -51,9 +56,8 @@ const Prepas = () => {
 
   return (
     <PageLayout>
-      {/* Cover photo */}
       <section className="relative h-48 md:h-64 overflow-hidden">
-        <img src={heroEcin} alt="ECIN" className="w-full h-full object-cover" />
+        <img src={data.cover} alt={data.title} loading="eager" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-foreground/40" />
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="text-3xl md:text-5xl font-extrabold text-background text-center">{data.title}</h1>

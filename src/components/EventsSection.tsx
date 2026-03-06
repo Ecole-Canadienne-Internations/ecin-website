@@ -1,13 +1,13 @@
 import { Calendar } from "lucide-react";
 import { motion } from "framer-motion";
-import blogIta from "@/assets/blog-ita.png";
-import blogHautCommissaire from "@/assets/blog-haut-commissaire.png";
-import alumniCatalyst from "@/assets/alumni-catalyst.png";
+import coverElementaire from "@/assets/cover-elementaire.png";
+import coverAlc from "@/assets/cover-alc.png";
+import coverSportEtudes from "@/assets/cover-sport-etudes.png";
 
 const events = [
-  { date: "15 Mars 2026", title: "Journée Portes Ouvertes", location: "Campus Bonamoussadi, Douala", image: alumniCatalyst },
-  { date: "22 Avril 2026", title: "Webinaire : Étudier au Canada", location: "En ligne", image: blogHautCommissaire },
-  { date: "10 Mai 2026", title: "Concours de Bourses ECIN", location: "Campus Yaoundé, Bastos", image: blogIta },
+  { date: "15 Mars 2026", title: "Journée Portes Ouvertes", location: "Campus Bonamoussadi, Douala", image: coverElementaire },
+  { date: "22 Avril 2026", title: "Webinaire : Étudier au Canada", location: "En ligne", image: coverAlc },
+  { date: "10 Mai 2026", title: "Concours de Bourses ECIN", location: "Campus Yaoundé, Bastos", image: coverSportEtudes },
 ];
 
 const EventsSection = () => {
@@ -33,7 +33,7 @@ const EventsSection = () => {
               transition={{ delay: i * 0.1 }}
               className="bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-shadow"
             >
-              <img src={ev.image} alt={ev.title} className="w-full h-44 object-cover" />
+              <img src={ev.image} alt={ev.title} loading="lazy" className="w-full h-44 object-cover" />
               <div className="p-6">
                 <div className="flex items-center gap-2 text-primary text-sm font-semibold mb-3">
                   <Calendar className="w-4 h-4" />

@@ -1,7 +1,7 @@
 import PageLayout from "@/components/PageLayout";
 import { motion } from "framer-motion";
 import { Download } from "lucide-react";
-import heroEcin from "@/assets/hero-ecin.png";
+import coverSecondaire from "@/assets/cover-secondaire.png";
 
 const conditions = [
   "Bulletin scolaire des 2 dernières années",
@@ -15,9 +15,8 @@ const conditions = [
 const Admissions = () => {
   return (
     <PageLayout>
-      {/* Cover photo */}
       <section className="relative h-48 md:h-64 overflow-hidden">
-        <img src={heroEcin} alt="ECIN" className="w-full h-full object-cover" />
+        <img src={coverSecondaire} alt="Admissions ECIN" loading="eager" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-foreground/40" />
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="text-3xl md:text-5xl font-extrabold text-background text-center">Admissions</h1>
