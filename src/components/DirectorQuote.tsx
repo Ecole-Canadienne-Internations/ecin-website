@@ -9,8 +9,8 @@ const DirectorQuote = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
+          viewport={{ once: true }}>
+          
           <span className="inline-block bg-accent text-accent-foreground text-sm font-semibold px-4 py-1.5 rounded-full mb-8">
             Le mot du Directeur
           </span>
@@ -26,15 +26,15 @@ const DirectorQuote = () => {
             <img
               src={directorPhoto}
               alt="Directeur Général ECIN"
-              className="w-20 h-20 rounded-full object-cover border-2 border-primary"
-            />
-            <p className="font-bold text-foreground">Direction Générale</p>
+              className="w-20 h-20 rounded-full object-cover border-2 border-primary" />
+            
+            <p className="font-bold text-foreground">Directeur Général</p>
             <p className="text-sm text-muted-foreground">École Canadienne Inter-Nations</p>
           </div>
         </motion.div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default DirectorQuote;
