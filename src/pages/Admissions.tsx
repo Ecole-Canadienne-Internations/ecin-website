@@ -1,6 +1,7 @@
 import PageLayout from "@/components/PageLayout";
 import { motion } from "framer-motion";
 import { Download } from "lucide-react";
+import heroEcin from "@/assets/hero-ecin.png";
 
 const conditions = [
   "Bulletin scolaire des 2 dernières années",
@@ -14,13 +15,21 @@ const conditions = [
 const Admissions = () => {
   return (
     <PageLayout>
+      {/* Cover photo */}
+      <section className="relative h-48 md:h-64 overflow-hidden">
+        <img src={heroEcin} alt="ECIN" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-foreground/40" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <h1 className="text-3xl md:text-5xl font-extrabold text-background text-center">Admissions</h1>
+        </div>
+      </section>
+
       <section className="py-16 md:py-24 bg-background">
         <div className="container max-w-4xl">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="inline-block bg-accent text-accent-foreground text-xs font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-wide">
               Inscription
             </span>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-foreground mb-4">Admissions</h1>
             <p className="text-xl text-muted-foreground mb-8">Rejoignez l'École Canadienne Inter-Nations</p>
             <p className="text-foreground/80 leading-relaxed text-lg mb-10">
               L'admission à l'ECIN est ouverte toute l'année. Suivez les étapes ci-dessous pour constituer votre dossier et démarrer votre parcours vers le Canada.
