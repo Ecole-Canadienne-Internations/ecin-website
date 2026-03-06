@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Phone, Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/logo-ecin.png";
+import LanguageToggle from "@/components/LanguageToggle";
 
 interface SubItem {
   label: string;
@@ -39,10 +40,8 @@ const navItems: NavItem[] = [
       { label: "ITA — Informatique", href: "/programmes/ita", desc: "Certifications IT internationales" },
     ],
   },
-  {
-    label: "Admissions",
-    href: "/admissions",
-  },
+  { label: "Alumni", href: "/alumni" },
+  { label: "Admissions", href: "/admissions" },
 ];
 
 const StickyHeader = () => {
@@ -96,7 +95,6 @@ const StickyHeader = () => {
                 </button>
               )}
 
-              {/* Dropdown */}
               {item.children && activeMenu === item.label && (
                 <div
                   className="absolute top-full left-0 mt-1 w-72 bg-background border border-border rounded-xl shadow-xl p-2 animate-in fade-in slide-in-from-top-2 duration-200"
@@ -119,7 +117,8 @@ const StickyHeader = () => {
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-3">
+          <LanguageToggle />
           <a href="tel:+237681263743" className="flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
             <Phone className="w-4 h-4" />
             +237 681 263 743
@@ -143,7 +142,6 @@ const StickyHeader = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {mobileOpen && (
         <div className="lg:hidden bg-background border-t border-border pb-4 max-h-[80vh] overflow-y-auto">
           <nav className="container flex flex-col gap-1 pt-3">
@@ -184,6 +182,9 @@ const StickyHeader = () => {
                 )}
               </div>
             ))}
+            <div className="flex items-center gap-3 px-2 py-3">
+              <LanguageToggle />
+            </div>
             <a href="tel:+237681263743" className="flex items-center gap-2 text-sm font-medium text-foreground/80 py-3 px-2">
               <Phone className="w-4 h-4" />
               +237 681 263 743

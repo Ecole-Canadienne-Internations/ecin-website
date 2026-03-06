@@ -11,6 +11,7 @@ const Cycles = lazy(() => import("./pages/Cycles"));
 const Prepas = lazy(() => import("./pages/Prepas"));
 const Programmes = lazy(() => import("./pages/Programmes"));
 const Admissions = lazy(() => import("./pages/Admissions"));
+const Alumni = lazy(() => import("./pages/Alumni"));
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/prepas/:prepa" element={<Prepas />} />
             <Route path="/programmes/:programme" element={<Programmes />} />
             <Route path="/admissions" element={<Admissions />} />
+            <Route path="/alumni" element={<Alumni />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
