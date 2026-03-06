@@ -4,11 +4,13 @@ import heroEcin from "@/assets/hero-ecin.png";
 const HeroSection = () => {
   return (
     <section id="accueil" className="relative pt-20 md:pt-20 min-h-[85vh] flex items-center overflow-hidden bg-background">
-      {/* Background image — white bg, fully visible */}
       <div className="absolute inset-0 z-0">
         <img
           src={heroEcin}
           alt="Étudiants ECIN"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
           className="w-full h-full object-contain object-center"
         />
         <div className="absolute inset-0 bg-background/50" />

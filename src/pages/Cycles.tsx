@@ -1,9 +1,11 @@
 import PageLayout from "@/components/PageLayout";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
-import heroEcin from "@/assets/hero-ecin.png";
+import coverPrimaire from "@/assets/cover-primaire.png";
+import coverElementaire from "@/assets/cover-elementaire.png";
+import coverSecondaire from "@/assets/cover-secondaire.png";
 
-const cyclesData: Record<string, { title: string; subtitle: string; badge: string; description: string; features: string[] }> = {
+const cyclesData: Record<string, { title: string; subtitle: string; badge: string; description: string; features: string[]; cover: string }> = {
   primaire: {
     title: "Cycle Primaire",
     subtitle: "De la maternelle au CM2",
@@ -16,6 +18,7 @@ const cyclesData: Record<string, { title: string; subtitle: string; badge: strin
       "Classes à effectifs réduits pour un suivi personnalisé",
       "Activités parascolaires : arts, sport, sciences",
     ],
+    cover: coverPrimaire,
   },
   elementaire: {
     title: "Cycle Élémentaire",
@@ -29,6 +32,7 @@ const cyclesData: Record<string, { title: string; subtitle: string; badge: strin
       "Initiation aux méthodes de travail canadiennes",
       "Orientation et conseil pédagogique personnalisé",
     ],
+    cover: coverElementaire,
   },
   secondaire: {
     title: "Secondaire / DÉSO",
@@ -43,6 +47,7 @@ const cyclesData: Record<string, { title: string; subtitle: string; badge: strin
       "Réussite du TPCL (test de compétence linguistique)",
       "Admission directe dans les universités partenaires",
     ],
+    cover: coverSecondaire,
   },
 };
 
@@ -52,9 +57,8 @@ const Cycles = () => {
 
   return (
     <PageLayout>
-      {/* Cover photo */}
       <section className="relative h-48 md:h-64 overflow-hidden">
-        <img src={heroEcin} alt="ECIN" className="w-full h-full object-cover" />
+        <img src={data.cover} alt={data.title} loading="eager" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-foreground/40" />
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="text-3xl md:text-5xl font-extrabold text-background text-center">{data.title}</h1>
