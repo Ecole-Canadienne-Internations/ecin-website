@@ -119,12 +119,12 @@ const StickyHeader = () => {
 
         <div className="hidden lg:flex items-center gap-3">
           <LanguageToggle />
-          <a href="tel:+237681263743" className="flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+          <a href="tel:+16476926009" className="flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
             <Phone className="w-4 h-4" />
-            +237 681 263 743
+            +1 647 692 6009
           </a>
           <a
-            href="https://wa.me/237681263743?text=Bonjour%2C%20je%20souhaite%20démarrer%20mon%20inscription."
+            href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20démarrer%20mon%20inscription."
             target="_blank"
             rel="noopener noreferrer"
             className="bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
@@ -185,12 +185,12 @@ const StickyHeader = () => {
             <div className="flex items-center gap-3 px-2 py-3">
               <LanguageToggle />
             </div>
-            <a href="tel:+237681263743" className="flex items-center gap-2 text-sm font-medium text-foreground/80 py-3 px-2">
+            <a href="tel:+16476926009" className="flex items-center gap-2 text-sm font-medium text-foreground/80 py-3 px-2">
               <Phone className="w-4 h-4" />
-              +237 681 263 743
+              +1 647 692 6009
             </a>
             <a
-              href="https://wa.me/237681263743?text=Bonjour%2C%20je%20souhaite%20démarrer%20mon%20inscription."
+              href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20démarrer%20mon%20inscription."
               target="_blank"
               rel="noopener noreferrer"
               className="bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold text-center hover:opacity-90 mx-2"

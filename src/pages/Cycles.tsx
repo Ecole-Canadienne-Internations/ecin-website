@@ -86,7 +86,7 @@ const Cycles = () => {
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="mt-12">
             <a
-              href={`https://wa.me/237681263743?text=Bonjour%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20le%20cycle%20${cycle}.`}
+              href={`https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20le%20cycle%20${cycle}.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center bg-primary text-primary-foreground px-7 py-3.5 rounded-full text-sm font-bold hover:opacity-90 transition-opacity"

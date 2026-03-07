@@ -49,7 +49,7 @@ const Admissions = () => {
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="flex flex-col sm:flex-row gap-4">
             <a
-              href="https://wa.me/237681263743?text=Bonjour%2C%20je%20souhaite%20démarrer%20mon%20inscription."
+              href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20démarrer%20mon%20inscription."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center bg-primary text-primary-foreground px-7 py-3.5 rounded-full text-sm font-bold hover:opacity-90 transition-opacity"
@@ -57,7 +57,7 @@ const Admissions = () => {
               Démarrer mon inscription
             </a>
             <a
-              href="https://wa.me/237681263743?text=Bonjour%2C%20je%20souhaite%20recevoir%20le%20guide%20d'admission."
+              href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20recevoir%20le%20guide%20d'admission."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 border-2 border-border text-foreground px-7 py-3.5 rounded-full text-sm font-bold hover:bg-secondary transition-colors"

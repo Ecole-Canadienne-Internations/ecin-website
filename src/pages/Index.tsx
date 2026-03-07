@@ -6,7 +6,7 @@ import PartnersSection from "@/components/PartnersSection";
 import WhyCanadaSection from "@/components/WhyCanadaSection";
 import TimelineSection from "@/components/TimelineSection";
 import DesoDetailsSection from "@/components/DesoDetailsSection";
-import LeadMagnet from "@/components/LeadMagnet";
+
 import EventsSection from "@/components/EventsSection";
 import BlogSection from "@/components/BlogSection";
 import FAQSection from "@/components/FAQSection";
@@ -24,7 +24,7 @@ const Index = () => {
       <WhyCanadaSection />
       <TimelineSection />
       <DesoDetailsSection />
-      <LeadMagnet />
+      
       <EventsSection />
       <BlogSection />
       <FAQSection />
