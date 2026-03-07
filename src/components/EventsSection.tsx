@@ -42,7 +42,7 @@ const EventsSection = () => {
                 <h3 className="text-lg font-bold text-foreground mb-3">{ev.title}</h3>
                 <p className="text-sm text-muted-foreground mb-5">{ev.location}</p>
                 <a
-                  href="https://wa.me/237681263743?text=Bonjour%2C%20je%20souhaite%20réserver%20ma%20place."
+                  href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20réserver%20ma%20place."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block w-full text-center bg-primary text-primary-foreground py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity"

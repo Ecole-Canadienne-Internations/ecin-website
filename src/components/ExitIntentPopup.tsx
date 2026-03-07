@@ -31,7 +31,7 @@ const ExitIntentPopup = () => {
           Recevez par WhatsApp les dates des prochaines bourses d'études et concours.
         </p>
         <a
-          href="https://wa.me/237681263743?text=Bonjour%2C%20je%20souhaite%20recevoir%20les%20infos%20sur%20les%20bourses."
+          href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20recevoir%20les%20infos%20sur%20les%20bourses."
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity"
