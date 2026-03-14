@@ -66,7 +66,7 @@ const StickyHeader = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <header className="fixed top-9 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex-shrink-0">
           <img src={logo} alt="École Canadienne Inter-Nations" className="h-12 md:h-14 w-auto" />
@@ -84,12 +84,12 @@ const StickyHeader = () => {
               {item.href ? (
                 <Link
                   to={item.href}
-                  className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-md"
+                  className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary hover:drop-shadow-[0_0_8px_hsl(var(--primary)/0.4)] transition-all rounded-md"
                 >
                   {item.label}
                 </Link>
               ) : (
-                <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-md">
+                <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary hover:drop-shadow-[0_0_8px_hsl(var(--primary)/0.4)] transition-all rounded-md">
                   {item.label}
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeMenu === item.label ? "rotate-180" : ""}`} />
                 </button>

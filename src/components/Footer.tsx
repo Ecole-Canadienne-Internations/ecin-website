@@ -42,7 +42,7 @@ const Footer = () => {
             <div className="flex flex-col gap-3 text-sm opacity-70">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                <span>Campus Bonamoussadi, Face Hôtel St James, Douala</span>
+                <span>Campus Bonamoussadi, Face Hôtel St James</span>
               </div>
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
@@ -65,7 +65,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-background/10 pt-6 text-center text-sm opacity-50">
-          © 2026 École Canadienne Inter-Nations. Tous droits réservés.
+          © 2026 École Canadienne Inter-Nations — BSID #882009 Ontario, Canada. Tous droits réservés.
         </div>
       </div>
     </footer>
