@@ -84,7 +84,7 @@ const StickyHeader = () => {
               {item.href ? (
                 <Link
                   to={item.href}
-                  className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-md"
+                  className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary hover:drop-shadow-[0_0_8px_hsl(var(--primary)/0.4)] transition-all rounded-md"
                 >
                   {item.label}
                 </Link>
