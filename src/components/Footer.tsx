@@ -65,7 +65,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-background/10 pt-6 text-center text-sm opacity-50">
-          © 2026 École Canadienne Inter-Nations. Tous droits réservés.
+          © 2026 École Canadienne Inter-Nations — BSID #882009 Ontario, Canada. Tous droits réservés.
         </div>
       </div>
     </footer>
