@@ -17,30 +17,46 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
+  { label: "Accueil", href: "/" },
   {
     label: "Nos Cycles",
     children: [
-      { label: "Primaire", href: "/cycles/primaire", desc: "De la maternelle au CM2" },
-      { label: "Élémentaire (6e–4e)", href: "/cycles/elementaire", desc: "Cycle intermédiaire bilingue" },
-      { label: "Secondaire / DÉSO", href: "/cycles/secondaire", desc: "Diplôme canadien de l'Ontario" },
+      { label: "Primaire (1ère-3ème)", href: "/cycles/primaire", desc: "Équivalent CP à CE2" },
+      { label: "Intermédiaire (4ème-5ème)", href: "/cycles/elementaire", desc: "Équivalent CM1 à CM2" },
+      { label: "Élémentaire (6ème-8ème)", href: "/cycles/secondaire", desc: "Équivalent 6ème à 4ème" },
+      { label: "Secondaire (9ème-12ème)", href: "/cycles/secondaire", desc: "Équivalent 3ème à Terminale" },
     ],
   },
   {
-    label: "Nos Prépas",
+    label: "Prépas",
     children: [
       { label: "Prépa Canada", href: "/prepas/canada", desc: "Post-BAC vers les universités canadiennes" },
-      { label: "Prépa France & Angleterre", href: "/prepas/france-angleterre", desc: "Accès aux grandes universités" },
-      { label: "Sport-Études", href: "/prepas/sport-etudes", desc: "Excellence sportive & académique" },
+      { label: "Prépa France & Europe", href: "/prepas/france-angleterre", desc: "Accès aux grandes universités" },
+      { label: "Sport-Études", href: "/prepas/sport-etudes", desc: "Bourses et excellence sportive" },
     ],
   },
   {
-    label: "Programmes Pro",
+    label: "Pôles Pro",
     children: [
-      { label: "ALC — Langues", href: "/programmes/alc", desc: "Anglais, Français, certifications" },
       { label: "ITA — Informatique", href: "/programmes/ita", desc: "Certifications IT internationales" },
+      { label: "ALC — Langues", href: "/programmes/alc", desc: "Anglais, Français, certifications" },
+      { label: "DTI — Digital & Tech", href: "/programmes/ita", desc: "Digital et Technologie Innovante" },
     ],
   },
-  { label: "Alumni", href: "/alumni" },
+  {
+    label: "Vie Scolaire",
+    children: [
+      { label: "Calendrier", href: "/#evenements", desc: "Dates importantes" },
+      { label: "Activités & Clubs", href: "/#galerie", desc: "Clubs et Junior Entreprise" },
+    ],
+  },
+  {
+    label: "Actualités",
+    children: [
+      { label: "Blog", href: "/#blog", desc: "Articles et nouvelles" },
+      { label: "Album Photo", href: "/#galerie", desc: "Photos du campus" },
+    ],
+  },
   { label: "Admissions", href: "/admissions" },
 ];
 
@@ -73,7 +89,7 @@ const StickyHeader = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-0.5">
           {navItems.map((item) => (
             <div
               key={item.label}
@@ -84,12 +100,12 @@ const StickyHeader = () => {
               {item.href ? (
                 <Link
                   to={item.href}
-                  className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary hover:drop-shadow-[0_0_8px_hsl(var(--primary)/0.4)] transition-all rounded-md"
+                  className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary hover:drop-shadow-[0_0_8px_hsl(var(--primary)/0.4)] transition-all rounded-md"
                 >
                   {item.label}
                 </Link>
               ) : (
-                <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary hover:drop-shadow-[0_0_8px_hsl(var(--primary)/0.4)] transition-all rounded-md">
+                <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary hover:drop-shadow-[0_0_8px_hsl(var(--primary)/0.4)] transition-all rounded-md">
                   {item.label}
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeMenu === item.label ? "rotate-180" : ""}`} />
                 </button>
@@ -103,7 +119,7 @@ const StickyHeader = () => {
                 >
                   {item.children.map((child) => (
                     <Link
-                      key={child.href}
+                      key={child.label + child.href}
                       to={child.href}
                       className="flex flex-col gap-0.5 px-4 py-3 rounded-lg hover:bg-secondary transition-colors"
                     >
@@ -119,10 +135,6 @@ const StickyHeader = () => {
 
         <div className="hidden lg:flex items-center gap-3">
           <LanguageToggle />
-          <a href="tel:+16476926009" className="flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
-            <Phone className="w-4 h-4" />
-            +1 647 692 6009
-          </a>
           <a
             href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20démarrer%20mon%20inscription."
             target="_blank"
@@ -168,7 +180,7 @@ const StickyHeader = () => {
                       <div className="pl-4 pb-2 flex flex-col gap-1">
                         {item.children.map((child) => (
                           <Link
-                            key={child.href}
+                            key={child.label + child.href}
                             to={child.href}
                             onClick={() => setMobileOpen(false)}
                             className="block py-2 px-3 text-sm text-foreground/70 hover:text-primary rounded-md hover:bg-secondary"
