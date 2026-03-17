@@ -37,7 +37,7 @@ const AdminDashboard = () => {
       if (!session) { navigate("/login"); return; }
       setUser(session.user);
 
-      const { data: roles } = await supabase.from("user_roles").select("role").eq("user_id", session.user.id);
+      const { data: roles } = await db.from("user_roles").select("role").eq("user_id", session.user.id);
       if (roles && roles.length > 0) {
         setIsAdmin(true);
       } else {
@@ -57,20 +57,20 @@ const AdminDashboard = () => {
 
   const loadData = async () => {
     if (activeTab === "articles") {
-      const { data } = await supabase.from("blog_articles").select("*").order("created_at", { ascending: false });
+      const { data } = await db.from("blog_articles").select("*").order("created_at", { ascending: false });
       setArticles(data || []);
     } else if (activeTab === "events") {
-      const { data } = await supabase.from("events").select("*").order("event_date", { ascending: true });
+      const { data } = await db.from("events").select("*").order("event_date", { ascending: true });
       setEvents(data || []);
     } else if (activeTab === "photos") {
-      const { data } = await supabase.from("photos").select("*").order("created_at", { ascending: false });
+      const { data } = await db.from("photos").select("*").order("created_at", { ascending: false });
       setPhotos(data || []);
     }
   };
 
   const handleAddArticle = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { error } = await supabase.from("blog_articles").insert({
+    const { error } = await db.from("blog_articles").insert({
       ...articleForm,
       author_id: user.id,
       published_at: articleForm.is_published ? new Date().toISOString() : null,
@@ -83,7 +83,7 @@ const AdminDashboard = () => {
 
   const handleAddEvent = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { error } = await supabase.from("events").insert(eventForm);
+    const { error } = await db.from("events").insert(eventForm);
     if (error) { toast({ title: "Erreur", description: error.message, variant: "destructive" }); return; }
     toast({ title: "Événement créé !" });
     setEventForm({ title: "", description: "", location: "", event_date: "", image_url: "", is_published: false });
@@ -92,7 +92,7 @@ const AdminDashboard = () => {
 
   const handleAddPhoto = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { error } = await supabase.from("photos").insert({ ...photoForm, is_published: true });
+    const { error } = await db.from("photos").insert({ ...photoForm, is_published: true });
     if (error) { toast({ title: "Erreur", description: error.message, variant: "destructive" }); return; }
     toast({ title: "Photo ajoutée !" });
     setPhotoForm({ image_url: "", alt_text: "" });
@@ -100,7 +100,7 @@ const AdminDashboard = () => {
   };
 
   const handleDelete = async (table: string, id: string) => {
-    const { error } = await supabase.from(table).delete().eq("id", id);
+    const { error } = await db.from(table).delete().eq("id", id);
     if (error) { toast({ title: "Erreur", description: error.message, variant: "destructive" }); return; }
     toast({ title: "Supprimé !" });
     loadData();
