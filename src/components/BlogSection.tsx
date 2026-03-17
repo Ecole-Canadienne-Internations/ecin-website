@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import coverPrimaire from "@/assets/cover-primaire.png";
 import coverPrepaCanada from "@/assets/cover-prepa-canada.png";
 import coverIta from "@/assets/cover-ita.png";
@@ -42,7 +43,6 @@ const BlogSection = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-          {/* Featured article */}
           <motion.article
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -65,7 +65,6 @@ const BlogSection = () => {
             </div>
           </motion.article>
 
-          {/* Sidebar articles */}
           <div className="lg:col-span-2 flex flex-col gap-6">
             {articles.map((a, i) => (
               <motion.article
@@ -88,6 +87,15 @@ const BlogSection = () => {
               </motion.article>
             ))}
           </div>
+        </div>
+
+        <div className="text-center mt-10">
+          <Link
+            to="/blog"
+            className="inline-flex items-center justify-center border-2 border-primary text-primary px-7 py-3 rounded-full text-sm font-bold hover:bg-primary hover:text-primary-foreground transition-colors"
+          >
+            Tout voir →
+          </Link>
         </div>
       </div>
     </section>
