@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
+import { LogOut, Plus, Trash2, Users, Image, FileText, Calendar } from "lucide-react";
 
 // Cast to bypass generated types until they're regenerated
 const db = supabase as any;
-import { supabase } from "@/integrations/supabase/client";
-import { toast } from "@/hooks/use-toast";
-import { LogOut, Plus, Trash2, Users, Image, FileText, Calendar } from "lucide-react";
 
 type Tab = "articles" | "events" | "photos" | "admins";
 
