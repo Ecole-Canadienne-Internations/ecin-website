@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import heroEcin from "@/assets/hero-ecin.png";
-import gallery1 from "@/assets/gallery-1.jpeg";
-import slideClass1 from "@/assets/slideshow-classroom-1.png";
-import slideClass2 from "@/assets/slideshow-classroom-2.png";
+import heroStudents from "@/assets/hero-students.png";
+import heroStudents2 from "@/assets/hero-students-2.png";
+import campusInterior from "@/assets/campus-interior.png";
 
-const slides = [heroEcin, gallery1, slideClass1, slideClass2];
+const slides = [heroEcin, heroStudents, heroStudents2, campusInterior];
 
 const HeroSection = () => {
   const [current, setCurrent] = useState(0);
@@ -20,8 +20,7 @@ const HeroSection = () => {
   }, [next]);
 
   return (
-    <section id="accueil" className="relative pt-[calc(2.25rem+4rem)] md:pt-[calc(2.25rem+5rem)] min-h-[85vh] flex items-center overflow-hidden">
-      {/* Slideshow background - all images stacked, opacity animated */}
+    <section id="accueil" className="relative min-h-[85vh] flex items-center overflow-hidden">
       {slides.map((src, i) => (
         <motion.img
           key={i}
@@ -29,13 +28,14 @@ const HeroSection = () => {
           alt="Campus ECIN"
           loading={i === 0 ? "eager" : "lazy"}
           className="absolute inset-0 w-full h-full object-cover"
+          initial={false}
           animate={{ opacity: i === current ? 1 : 0 }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
+          transition={{ duration: 1.8, ease: "easeInOut" }}
         />
       ))}
 
       {/* Light white transparent overlay */}
-      <div className="absolute inset-0 bg-background/40" />
+      <div className="absolute inset-0 bg-background/50" />
 
       <div className="container relative z-10 py-16 md:py-24">
         <div className="max-w-2xl">

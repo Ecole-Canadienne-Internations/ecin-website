@@ -17,53 +17,56 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-{ label: "Accueil", href: "/" },
-{
-  label: "Nos Cycles",
-  children: [
-  { label: "Primaire (1ère-3ème)", href: "/cycles/primaire", desc: "Équivalent CP à CE2" },
-  { label: "Intermédiaire (4ème-5ème)", href: "/cycles/elementaire", desc: "Équivalent CM1 à CM2" },
-  { label: "Élémentaire (6ème-8ème)", href: "/cycles/secondaire", desc: "Équivalent 6ème à 4ème" },
-  { label: "Secondaire (9ème-12ème)", href: "/cycles/secondaire", desc: "Équivalent 3ème à Terminale" }]
-
-},
-{
-  label: "Prépas",
-  children: [
-  { label: "Prépa Canada", href: "/prepas/canada", desc: "Post-BAC vers les universités canadiennes" },
-  { label: "Prépa France & Europe", href: "/prepas/france-angleterre", desc: "Accès aux grandes universités" },
-  { label: "Sport-Études", href: "/prepas/sport-etudes", desc: "Bourses et excellence sportive" }]
-
-},
-{
-  label: "Pôles Pro",
-  children: [
-  { label: "ITA — Informatique", href: "/programmes/ita", desc: "Certifications IT internationales" },
-  { label: "ALC — Langues", href: "/programmes/alc", desc: "Anglais, Français, certifications" },
-  { label: "DTI — Digital & Tech", href: "/programmes/ita", desc: "Digital et Technologie Innovante" }]
-
-},
-{
-  label: "Vie Scolaire",
-  children: [
-  { label: "Calendrier", href: "/#evenements", desc: "Dates importantes" },
-  { label: "Activités & Clubs", href: "/#galerie", desc: "Clubs et Junior Entreprise" }]
-
-},
-{
-  label: "Actualités",
-  children: [
-  { label: "Blog", href: "/#blog", desc: "Articles et nouvelles" },
-  { label: "Album Photo", href: "/#galerie", desc: "Photos du campus" }]
-
-},
-{ label: "Admissions", href: "/admissions" }];
-
+  { label: "Accueil", href: "/" },
+  { label: "ECIN en bref", href: "/ecin-en-bref" },
+  {
+    label: "Nos Cycles",
+    children: [
+      { label: "Primaire (1ère-3ème)", href: "/cycles/primaire", desc: "Équivalent CP à CE2" },
+      { label: "Élémentaire (4ème-5ème)", href: "/cycles/elementaire", desc: "Équivalent CM1 à CM2" },
+      { label: "Intermédiaire (6ème-8ème)", href: "/cycles/intermediaire", desc: "Équivalent 6ème à 4ème" },
+      { label: "Secondaire (9ème-12ème)", href: "/cycles/secondaire", desc: "Équivalent 3ème à Terminale" },
+    ],
+  },
+  {
+    label: "Prépas",
+    children: [
+      { label: "Prépa Canada", href: "/prepas/canada", desc: "Post-BAC vers les universités canadiennes" },
+      { label: "Prépa France & Europe", href: "/prepas/france-angleterre", desc: "Accès aux grandes universités" },
+      { label: "Prépa Sport-études", href: "/prepas/sport-etudes", desc: "Bourses et excellence sportive" },
+    ],
+  },
+  {
+    label: "Pôles Pro",
+    children: [
+      { label: "ITA — Informatique", href: "/programmes/ita", desc: "Certifications IT internationales" },
+      { label: "ALC — Langues", href: "/programmes/alc", desc: "Anglais, Français, certifications" },
+      { label: "DTA — Digital Technologie Academy", href: "/programmes/dta", desc: "Digital et Technologie" },
+    ],
+  },
+  {
+    label: "Vie Scolaire",
+    children: [
+      { label: "Calendrier", href: "/#evenements", desc: "Dates importantes" },
+      { label: "Activités & Clubs", href: "/#galerie", desc: "Clubs et Junior Entreprise" },
+    ],
+  },
+  {
+    label: "Actualités",
+    children: [
+      { label: "Blog", href: "/blog", desc: "Articles et nouvelles" },
+      { label: "Album Photo", href: "/#album", desc: "Photos du campus" },
+    ],
+  },
+  { label: "Admissions", href: "/admissions" },
+];
 
 const StickyHeader = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
   const location = useLocation();
 
@@ -71,6 +74,23 @@ const StickyHeader = () => {
     setMobileOpen(false);
     setActiveMenu(null);
   }, [location]);
+
+  // Hide on scroll down, show on scroll up
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY < 80) {
+        setVisible(true);
+      } else if (currentY > lastScrollY.current) {
+        setVisible(false);
+      } else {
+        setVisible(true);
+      }
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleMouseEnter = (label: string) => {
     clearTimeout(timeoutRef.current);
@@ -82,55 +102,63 @@ const StickyHeader = () => {
   };
 
   return (
-    <header className="fixed top-9 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <header
+      className={`fixed top-9 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border transition-transform duration-300 ${
+        visible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <div className="container flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex-shrink-0">
-          
+          <img src={logo} alt="ECIN" className="h-12 md:h-14" />
         </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-0.5">
-          {navItems.map((item) =>
-          <div
-            key={item.label}
-            className="relative"
-            onMouseEnter={() => item.children && handleMouseEnter(item.label)}
-            onMouseLeave={handleMouseLeave}>
-            
-              {item.href ?
-            <Link
-              to={item.href}
-              className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary hover:drop-shadow-[0_0_8px_hsl(var(--primary)/0.4)] transition-all rounded-md">
-              
-                  {item.label}
-                </Link> :
-
-            <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary hover:drop-shadow-[0_0_8px_hsl(var(--primary)/0.4)] transition-all rounded-md">
-                  {item.label}
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeMenu === item.label ? "rotate-180" : ""}`} />
-                </button>
-            }
-
-              {item.children && activeMenu === item.label &&
+          {navItems.map((item) => (
             <div
-              className="absolute top-full left-0 mt-1 w-72 bg-background border border-border rounded-xl shadow-xl p-2 animate-in fade-in slide-in-from-top-2 duration-200"
-              onMouseEnter={() => handleMouseEnter(item.label)}
-              onMouseLeave={handleMouseLeave}>
-              
-                  {item.children.map((child) =>
-              <Link
-                key={child.label + child.href}
-                to={child.href}
-                className="flex flex-col gap-0.5 px-4 py-3 rounded-lg hover:bg-secondary transition-colors">
-                
-                      <span className="text-sm font-semibold text-foreground">{child.label}</span>
+              key={item.label}
+              className="relative"
+              onMouseEnter={() => item.children && handleMouseEnter(item.label)}
+              onMouseLeave={handleMouseLeave}
+            >
+              {item.href ? (
+                <Link
+                  to={item.href}
+                  className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-md"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-md">
+                  {item.label}
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 transition-transform ${activeMenu === item.label ? "rotate-180" : ""}`}
+                  />
+                </button>
+              )}
+
+              {item.children && activeMenu === item.label && (
+                <div
+                  className="absolute top-full left-0 mt-1 w-72 bg-background border border-border rounded-xl shadow-xl p-2 animate-in fade-in slide-in-from-top-2 duration-200"
+                  onMouseEnter={() => handleMouseEnter(item.label)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  {item.children.map((child) => (
+                    <Link
+                      key={child.label + child.href}
+                      to={child.href}
+                      className="flex flex-col gap-0.5 px-4 py-3 rounded-lg hover:bg-secondary hover:text-primary transition-colors group"
+                    >
+                      <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {child.label}
+                      </span>
                       <span className="text-xs text-muted-foreground">{child.desc}</span>
                     </Link>
-              )}
+                  ))}
                 </div>
-            }
+              )}
             </div>
-          )}
+          ))}
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
@@ -139,8 +167,8 @@ const StickyHeader = () => {
             href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20démarrer%20mon%20inscription."
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity">
-            
+            className="bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
+          >
             S'inscrire
           </a>
         </div>
@@ -148,52 +176,54 @@ const StickyHeader = () => {
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           className="lg:hidden p-2 text-foreground"
-          aria-label="Menu">
-          
+          aria-label="Menu"
+        >
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
-      {mobileOpen &&
-      <div className="lg:hidden bg-background border-t border-border pb-4 max-h-[80vh] overflow-y-auto">
+      {mobileOpen && (
+        <div className="lg:hidden bg-background border-t border-border pb-4 max-h-[80vh] overflow-y-auto">
           <nav className="container flex flex-col gap-1 pt-3">
-            {navItems.map((item) =>
-          <div key={item.label}>
-                {item.href ?
-            <Link
-              to={item.href}
-              onClick={() => setMobileOpen(false)}
-              className="block text-sm font-medium text-foreground/80 hover:text-primary py-3 px-2">
-              
+            {navItems.map((item) => (
+              <div key={item.label}>
+                {item.href ? (
+                  <Link
+                    to={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="block text-sm font-medium text-foreground/80 hover:text-primary py-3 px-2"
+                  >
                     {item.label}
-                  </Link> :
-
-            <>
+                  </Link>
+                ) : (
+                  <>
                     <button
-                onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
-                className="flex items-center justify-between w-full text-sm font-medium text-foreground/80 hover:text-primary py-3 px-2">
-                
+                      onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
+                      className="flex items-center justify-between w-full text-sm font-medium text-foreground/80 hover:text-primary py-3 px-2"
+                    >
                       {item.label}
-                      <ChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === item.label ? "rotate-180" : ""}`} />
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform ${mobileExpanded === item.label ? "rotate-180" : ""}`}
+                      />
                     </button>
-                    {mobileExpanded === item.label && item.children &&
-              <div className="pl-4 pb-2 flex flex-col gap-1">
-                        {item.children.map((child) =>
-                <Link
-                  key={child.label + child.href}
-                  to={child.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="block py-2 px-3 text-sm text-foreground/70 hover:text-primary rounded-md hover:bg-secondary">
-                  
+                    {mobileExpanded === item.label && item.children && (
+                      <div className="pl-4 pb-2 flex flex-col gap-1">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.label + child.href}
+                            to={child.href}
+                            onClick={() => setMobileOpen(false)}
+                            className="block py-2 px-3 text-sm text-foreground/70 hover:text-primary rounded-md hover:bg-secondary"
+                          >
                             {child.label}
                           </Link>
-                )}
+                        ))}
                       </div>
-              }
+                    )}
                   </>
-            }
+                )}
               </div>
-          )}
+            ))}
             <div className="flex items-center gap-3 px-2 py-3">
               <LanguageToggle />
             </div>
@@ -202,18 +232,18 @@ const StickyHeader = () => {
               +1 647 692 6009
             </a>
             <a
-            href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20démarrer%20mon%20inscription."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold text-center hover:opacity-90 mx-2">
-            
+              href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20démarrer%20mon%20inscription."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold text-center hover:opacity-90 mx-2"
+            >
               S'inscrire
             </a>
           </nav>
         </div>
-      }
-    </header>);
-
+      )}
+    </header>
+  );
 };
 
 export default StickyHeader;
