@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
+import { Link } from "react-router-dom";
 import directorPhoto from "@/assets/director-photo.png";
 
 const DirectorQuote = () => {
@@ -9,8 +10,8 @@ const DirectorQuote = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}>
-          
+          viewport={{ once: true }}
+        >
           <span className="inline-block bg-accent text-accent-foreground text-sm font-semibold px-4 py-1.5 rounded-full mb-8">
             Le mot du Directeur
           </span>
@@ -26,15 +27,21 @@ const DirectorQuote = () => {
             <img
               src={directorPhoto}
               alt="Directeur Général ECIN"
-              className="w-20 h-20 rounded-full object-cover border-2 border-primary" />
-            
+              className="w-20 h-20 rounded-full object-cover border-2 border-primary"
+            />
             <p className="font-bold text-foreground">Directeur Général</p>
             <p className="text-sm text-muted-foreground">École Canadienne Inter-Nations</p>
+            <Link
+              to="/ecin-en-bref"
+              className="mt-4 inline-flex items-center justify-center bg-primary text-primary-foreground px-6 py-2.5 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
+            >
+              En savoir plus
+            </Link>
           </div>
         </motion.div>
       </div>
-    </section>);
-
+    </section>
+  );
 };
 
 export default DirectorQuote;

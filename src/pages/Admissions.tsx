@@ -12,6 +12,13 @@ const conditions = [
   "Frais de dossier",
 ];
 
+const highlights = [
+  { label: "30 crédits", detail: "18 obligatoires + 12 optionnels" },
+  { label: "4 ans", detail: "De la 9e à la 12e année" },
+  { label: "40 heures", detail: "Service communautaire requis" },
+  { label: "TPCL", detail: "Test de compétence linguistique" },
+];
+
 const Admissions = () => {
   return (
     <PageLayout>
@@ -33,6 +40,22 @@ const Admissions = () => {
             <p className="text-foreground/80 leading-relaxed text-lg mb-10">
               L'admission à l'ECIN est ouverte toute l'année. Suivez les étapes ci-dessous pour constituer votre dossier et démarrer votre parcours vers le Canada.
             </p>
+          </motion.div>
+
+          {/* DESO Requirements */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }}>
+            <h2 className="text-2xl font-bold text-foreground mb-6">Exigences du DÉSO</h2>
+            <p className="text-foreground/80 leading-relaxed mb-6">
+              Le programme est structuré sur 4 ans (9<sup>e</sup> à 12<sup>e</sup> année) pour un total de 30 crédits (18 obligatoires et 12 optionnels), incluant 40 heures de service communautaire et la réussite du TPCL.
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+              {highlights.map((h, i) => (
+                <div key={i} className="bg-secondary rounded-lg p-5 text-center border border-border">
+                  <p className="text-2xl font-extrabold text-primary mb-1">{h.label}</p>
+                  <p className="text-xs text-muted-foreground">{h.detail}</p>
+                </div>
+              ))}
+            </div>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>

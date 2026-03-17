@@ -6,13 +6,13 @@ import logoDti from "@/assets/logo-dti.jpeg";
 const poles = [
   {
     icon: <Trophy className="w-8 h-8 text-primary" />,
-    title: "Sport-Études",
+    title: "Prépa Sport-études",
     desc: "Excellence académique, sport de haut niveau et accès aux bourses internationales pour les athlètes ambitieux.",
     logo: null,
   },
   {
     icon: <Monitor className="w-8 h-8 text-primary" />,
-    title: "DTI — Digital & Technologie Innovante",
+    title: "DTA — Digital Technologie Academy",
     desc: "Certifications en technologies numériques et compétences digitales reconnues à l'international.",
     logo: logoDti,
   },
