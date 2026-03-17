@@ -112,7 +112,7 @@ const AdminDashboard = () => {
     const { data, error } = await supabase.auth.signUp({ email: inviteEmail, password: crypto.randomUUID() });
     if (error) { toast({ title: "Erreur", description: error.message, variant: "destructive" }); return; }
     if (data.user) {
-      await (supabase as any).from("user_roles").insert({ user_id: data.user.id, role: "admin" });
+      await db.from("user_roles").insert({ user_id: data.user.id, role: "admin" });
       toast({ title: "Admin invité", description: `Un email a été envoyé à ${inviteEmail}` });
     }
     setInviteEmail("");
