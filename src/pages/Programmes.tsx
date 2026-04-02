@@ -35,6 +35,21 @@ const programmesData: Record<string, { title: string; subtitle: string; badge: s
     ],
     cover: coverIta,
   },
+  dte: {
+    title: "DTE — Digital Technologie Émergente",
+    subtitle: "Compétences numériques & Technologies émergentes",
+    badge: "Digital",
+    description: "Découvrez les technologies émergentes et développez des compétences digitales de pointe pour les métiers de demain.",
+    features: [
+      "Intelligence artificielle et Machine Learning",
+      "Développement d'applications mobiles",
+      "Design UX/UI et prototypage",
+      "Marketing digital et e-commerce",
+      "Cloud Computing et DevOps",
+      "Blockchain et technologies décentralisées",
+    ],
+    cover: coverIta,
+  },
 };
 
 const Programmes = () => {
