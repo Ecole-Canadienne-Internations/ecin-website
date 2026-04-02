@@ -31,7 +31,7 @@ const TopBar = () => {
           <span>/</span>
           <a href="tel:+16476926009" className="hover:opacity-100 transition-opacity">+1(647)692-6009</a>
           <span className="hidden md:inline">|</span>
-          <span className="hidden md:inline font-medium">École inspectée — Ontario</span>
+          <span className="hidden md:inline font-medium">École inspectée — Par le Ministère de l'éducation de l'Ontario</span>
         </div>
       </div>
     </div>

@@ -109,7 +109,7 @@ const StickyHeader = () => {
     >
       <div className="container flex items-center justify-between h-20 md:h-24">
         <Link to="/" className="flex-shrink-0">
-          <img src={logo} alt="ECIN" className="h-40 md:h-56" />
+          <img src={logo} alt="ECIN" className="h-32 md:h-44 -my-8 md:-my-12" />
         </Link>
 
         {/* Desktop Nav */}

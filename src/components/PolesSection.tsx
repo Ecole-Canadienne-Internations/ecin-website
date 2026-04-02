@@ -12,7 +12,7 @@ const poles = [
   },
   {
     icon: <Monitor className="w-8 h-8 text-primary" />,
-    title: "DTA — Digital Technologie Academy",
+    title: "DTE — Digital Technologie Émergente",
     desc: "Certifications en technologies numériques et compétences digitales reconnues à l'international.",
     logo: logoDti,
   },
