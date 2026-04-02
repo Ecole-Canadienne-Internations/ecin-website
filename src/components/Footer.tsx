@@ -64,8 +64,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-background/10 pt-6 text-center text-sm opacity-50">
-          © 2026 École Canadienne Inter-Nations — BSID #882009 Ontario, Canada. Tous droits réservés.
+        <div className="border-t border-background/10 pt-6 text-center text-sm opacity-50 space-y-1">
+          <p>© 2026 École Canadienne Inter-Nations — BSID #882009 Ontario, Canada. Tous droits réservés.</p>
+          <p>Built by <a href="https://delmarwebstudios.qzz.io" target="_blank" rel="noopener noreferrer" className="underline hover:opacity-100 transition-opacity">Delmar Web Studios</a></p>
         </div>
       </div>
     </footer>
