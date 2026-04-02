@@ -107,9 +107,9 @@ const StickyHeader = () => {
         visible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="container flex items-center justify-between h-16 md:h-20">
+      <div className="container flex items-center justify-between h-24 md:h-32">
         <Link to="/" className="flex-shrink-0">
-          <img src={logo} alt="ECIN" className="h-12 md:h-14" />
+          <img src={logo} alt="ECIN" className="h-24 md:h-32" />
         </Link>
 
         {/* Desktop Nav */}
