@@ -41,7 +41,7 @@ const navItems: NavItem[] = [
     children: [
       { label: "ITA — Informatique", href: "/programmes/ita", desc: "Certifications IT internationales" },
       { label: "ALC — Langues", href: "/programmes/alc", desc: "Anglais, Français, certifications" },
-      { label: "DTA — Digital Technologie Academy", href: "/programmes/dta", desc: "Digital et Technologie" },
+      { label: "DTE — Digital Technologie Émergente", href: "/programmes/dte", desc: "Digital et Technologie" },
     ],
   },
   {
@@ -107,9 +107,9 @@ const StickyHeader = () => {
         visible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="container flex items-center justify-between h-32 md:h-40">
+      <div className="container flex items-center justify-between h-20 md:h-24">
         <Link to="/" className="flex-shrink-0">
-          <img src={logo} alt="ECIN" className="h-40 md:h-56" />
+          <img src={logo} alt="ECIN" className="h-32 md:h-44 -my-8 md:-my-12" />
         </Link>
 
         {/* Desktop Nav */}
