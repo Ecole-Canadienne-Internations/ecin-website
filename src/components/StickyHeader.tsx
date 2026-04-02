@@ -41,7 +41,7 @@ const navItems: NavItem[] = [
     children: [
       { label: "ITA — Informatique", href: "/programmes/ita", desc: "Certifications IT internationales" },
       { label: "ALC — Langues", href: "/programmes/alc", desc: "Anglais, Français, certifications" },
-      { label: "DTA — Digital Technologie Academy", href: "/programmes/dta", desc: "Digital et Technologie" },
+      { label: "DTE — Digital Technologie Émergente", href: "/programmes/dte", desc: "Digital et Technologie" },
     ],
   },
   {
