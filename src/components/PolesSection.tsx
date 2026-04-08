@@ -1,18 +1,12 @@
 import { motion } from "framer-motion";
-import { Trophy, Monitor, BookOpen } from "lucide-react";
+import { Trophy, Monitor, BookOpen, Cpu } from "lucide-react";
 import logoAlc from "@/assets/logo-alc.jpeg";
 import logoDti from "@/assets/logo-dti.jpeg";
 
 const poles = [
   {
-    icon: <Trophy className="w-8 h-8 text-primary" />,
-    title: "Prépa Sport-études",
-    desc: "Excellence académique, sport de haut niveau et accès aux bourses internationales pour les athlètes ambitieux.",
-    logo: null,
-  },
-  {
-    icon: <Monitor className="w-8 h-8 text-primary" />,
-    title: "DTE — Digital Technologie Émergente",
+    icon: <Cpu className="w-8 h-8 text-primary" />,
+    title: "DTI — Digital",
     desc: "Certifications en technologies numériques et compétences digitales reconnues à l'international.",
     logo: logoDti,
   },
@@ -21,6 +15,18 @@ const poles = [
     title: "ALC — Academic Language Center",
     desc: "Formation en langues (Français/Anglais), préparation aux tests de niveau et certifications linguistiques.",
     logo: logoAlc,
+  },
+  {
+    icon: <Monitor className="w-8 h-8 text-primary" />,
+    title: "ITA — Information Technology Academy",
+    desc: "Certifications IT internationales, développement logiciel et compétences numériques avancées.",
+    logo: null,
+  },
+  {
+    icon: <Trophy className="w-8 h-8 text-primary" />,
+    title: "Prépa Sport-Études",
+    desc: "Excellence académique, sport de haut niveau et accès aux bourses internationales pour les athlètes ambitieux.",
+    logo: null,
   },
 ];
 
@@ -38,14 +44,14 @@ const PolesSection = () => {
             Nos Pôles
           </span>
           <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-3">
-            Sport, Digital & Langues
+            Digital, Langues, IT & Sport
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
             Des programmes spécialisés pour développer chaque talent.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {poles.map((pole, i) => (
             <motion.div
               key={i}

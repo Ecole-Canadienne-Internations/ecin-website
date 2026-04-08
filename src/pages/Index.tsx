@@ -8,6 +8,8 @@ import PartnersSection from "@/components/PartnersSection";
 import WhyCanadaSection from "@/components/WhyCanadaSection";
 import TimelineSection from "@/components/TimelineSection";
 import PolesSection from "@/components/PolesSection";
+import VacationCoursesSection from "@/components/VacationCoursesSection";
+import ScholarshipSection from "@/components/ScholarshipSection";
 import PhotoGallery from "@/components/PhotoGallery";
 import EventsSection from "@/components/EventsSection";
 import BlogSection from "@/components/BlogSection";
@@ -28,6 +30,8 @@ const Index = () => {
       <WhyCanadaSection />
       <TimelineSection />
       <PolesSection />
+      <VacationCoursesSection />
+      <ScholarshipSection />
       <PhotoGallery />
       <EventsSection />
       <BlogSection />

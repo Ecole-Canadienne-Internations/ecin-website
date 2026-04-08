@@ -53,9 +53,9 @@ const HeroSection = () => {
               <span className="text-primary">(DESO)</span> sans quitter le Cameroun.
             </h1>
 
-            <p className="text-lg md:text-xl text-foreground/70 max-w-lg mb-8 leading-relaxed">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground/80 max-w-lg mb-8 leading-relaxed">
               Un cursus d'excellence de l'Ontario à Yaoundé pour ouvrir les portes des meilleures universités mondiales.
-            </p>
+            </h2>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <a

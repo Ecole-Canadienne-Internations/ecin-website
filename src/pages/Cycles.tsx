@@ -1,44 +1,30 @@
 import PageLayout from "@/components/PageLayout";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
-import coverPrimaire from "@/assets/cover-primaire.png";
 import coverElementaire from "@/assets/cover-elementaire.png";
 import coverSecondaire from "@/assets/cover-secondaire.png";
 
 const cyclesData: Record<string, { title: string; subtitle: string; badge: string; description: string; features: string[]; cover: string }> = {
-  primaire: {
-    title: "Cycle Primaire",
-    subtitle: "De la maternelle au CM2",
-    badge: "Maternelle — CM2",
-    description: "Un programme bilingue (français-anglais) fondé sur les standards canadiens, qui développe la curiosité, l'autonomie et les bases académiques solides dès le plus jeune âge.",
+  elementaire: {
+    title: "École Élémentaire",
+    subtitle: "Du Jardin d'enfants à la 8ème année",
+    badge: "JK — 8e année",
+    description: "Un programme bilingue (français-anglais) fondé sur les standards canadiens de l'Ontario, qui couvre de la maternelle (SIL) jusqu'à la 4ème (système camerounais). Développement de la curiosité, de l'autonomie et des bases académiques solides.",
     features: [
       "Immersion bilingue français-anglais dès la maternelle",
-      "Pédagogie centrée sur l'élève et l'apprentissage par projets",
+      "Pédagogie centrée sur l'élève et apprentissage par projets",
       "Développement des compétences socio-émotionnelles",
       "Classes à effectifs réduits pour un suivi personnalisé",
       "Activités parascolaires : arts, sport, sciences",
-    ],
-    cover: coverPrimaire,
-  },
-  elementaire: {
-    title: "Cycle Élémentaire",
-    subtitle: "De la 6ème à la 4ème",
-    badge: "6ème — 4ème",
-    description: "Le cycle intermédiaire prépare les élèves à intégrer le programme DÉSO en renforçant les fondamentaux académiques dans un environnement bilingue stimulant.",
-    features: [
-      "Transition douce vers le curriculum ontarien",
-      "Renforcement en mathématiques et sciences",
-      "Perfectionnement linguistique bilingue",
-      "Initiation aux méthodes de travail canadiennes",
-      "Orientation et conseil pédagogique personnalisé",
+      "Équivalence Cameroun : Maternelle (SIL) → 4ème",
     ],
     cover: coverElementaire,
   },
   secondaire: {
-    title: "Secondaire / DÉSO",
+    title: "École Secondaire / DÉSO",
     subtitle: "Le Diplôme d'Études Secondaires de l'Ontario",
     badge: "9e — 12e année",
-    description: "Le programme phare de l'ECIN : obtenez le diplôme officiel de l'Ontario (DÉSO), reconnu par toutes les universités canadiennes, sans quitter le Cameroun.",
+    description: "Le programme phare de l'ECIN : obtenez le diplôme officiel de l'Ontario (DÉSO), reconnu par toutes les universités canadiennes, sans quitter le Cameroun. Équivalence : de la 3ème à la Terminale.",
     features: [
       "30 crédits : 18 obligatoires + 12 optionnels",
       "Plateforme virtuelle inspectée par le ministère de l'Ontario",
@@ -46,6 +32,7 @@ const cyclesData: Record<string, { title: string; subtitle: string; badge: strin
       "40 heures de service communautaire",
       "Réussite du TPCL (test de compétence linguistique)",
       "Admission directe dans les universités partenaires",
+      "Admission directe possible en 11ème (1ère) ou 12ème (Terminale)",
     ],
     cover: coverSecondaire,
   },
@@ -53,7 +40,7 @@ const cyclesData: Record<string, { title: string; subtitle: string; badge: strin
 
 const Cycles = () => {
   const { cycle } = useParams();
-  const data = cyclesData[cycle || "primaire"] || cyclesData.primaire;
+  const data = cyclesData[cycle || "elementaire"] || cyclesData.elementaire;
 
   return (
     <PageLayout>

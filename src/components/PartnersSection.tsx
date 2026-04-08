@@ -9,6 +9,7 @@ import logoHearst from "@/assets/logo-hearst.png";
 import logoSaintPaul from "@/assets/logo-saintpaul.png";
 import logoLaurentian from "@/assets/logo-laurentian.png";
 import logoUof from "@/assets/logo-uof.png";
+import logoAvantageOntario from "@/assets/avantage-ontario.png";
 
 const allPartners = [
   { name: "La Cité Collégiale", logo: logoLaCite },
@@ -41,6 +42,20 @@ const PartnersSection = () => {
           </p>
         </motion.div>
 
+        {/* Avantage Ontario — Premium Position */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex justify-center mb-10"
+        >
+          <img
+            src={logoAvantageOntario}
+            alt="Avantage Ontario — Naturellement bilingue"
+            className="h-20 md:h-28 object-contain"
+          />
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -52,11 +67,20 @@ const PartnersSection = () => {
                 key={p.name}
                 src={p.logo}
                 alt={p.name}
-                className="h-14 md:h-20 object-contain transition-transform duration-300 hover:scale-105"
+                className="h-16 md:h-24 object-contain transition-transform duration-300 hover:scale-105"
               />
             ))}
           </div>
         </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center text-sm text-muted-foreground mt-10 bg-secondary border border-border rounded-lg px-6 py-4 max-w-2xl mx-auto"
+        >
+          Tous ces établissements sont nos partenaires officiels et reconnaissent le diplôme DÉSO.
+        </motion.p>
       </div>
     </section>
   );
