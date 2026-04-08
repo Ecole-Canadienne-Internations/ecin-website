@@ -5,6 +5,7 @@ const points = [
   "Plus d'un million de postes vacants pour les travailleurs qualifiés chaque année.",
   "Un des pays les plus accueillants au monde pour les étudiants internationaux.",
   "Un système d'immigration transparent avec des voies d'accès à la résidence permanente.",
+  "Transition administrative simplifiée : obtention du visa, admission facilitée dans les universités partenaires.",
 ];
 
 const WhyCanadaSection = () => {
