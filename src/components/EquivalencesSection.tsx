@@ -1,10 +1,16 @@
 import { motion } from "framer-motion";
 
 const equivalences = [
-  { ontario: "Études Primaires (1ère – 3ème année)", cameroun: "CP → CE2", color: "bg-primary/10 border-primary/20" },
-  { ontario: "Études Élémentaires (4ème – 5ème année)", cameroun: "CM1 → CM2", color: "bg-accent border-accent-foreground/20" },
-  { ontario: "Études Intermédiaires (6ème – 8ème année)", cameroun: "6ème → 4ème", color: "bg-primary/10 border-primary/20" },
-  { ontario: "Études Secondaires (9ème – 12ème année)", cameroun: "3ème → Terminale", color: "bg-accent border-accent-foreground/20" },
+  {
+    ontario: "École Élémentaire (Jardin d'enfants à la 8ème année)",
+    cameroun: "Maternelle (SIL) → 4ème",
+    color: "bg-primary/10 border-primary/20",
+  },
+  {
+    ontario: "École Secondaire (9ème à la 12ème année)",
+    cameroun: "3ème → Terminale",
+    color: "bg-accent border-accent-foreground/20",
+  },
 ];
 
 const EquivalencesSection = () => {
@@ -39,7 +45,9 @@ const EquivalencesSection = () => {
               className={`${eq.color} border rounded-xl p-6 text-center`}
             >
               <p className="text-sm font-bold text-foreground mb-1">{eq.ontario}</p>
-              <p className="text-xs text-muted-foreground">Équivalent : <span className="font-semibold text-primary">{eq.cameroun}</span></p>
+              <p className="text-xs text-muted-foreground">
+                Équivalent : <span className="font-semibold text-primary">{eq.cameroun}</span>
+              </p>
             </motion.div>
           ))}
         </div>
@@ -50,7 +58,7 @@ const EquivalencesSection = () => {
           viewport={{ once: true }}
           className="text-center text-sm text-muted-foreground bg-primary/5 border border-primary/10 rounded-lg px-6 py-4"
         >
-          <strong className="text-primary">Note :</strong> Le programme DÉSO est structuré sur 1 an pour les élèves entrant en 12ème année (Terminale au Cameroun).
+          <strong className="text-primary">Admission directe :</strong> Possibilité d'entrer directement en 11ème année (équivalent 1ère) sans probatoire, ou en 12ème année (équivalent Terminale).
         </motion.p>
       </div>
     </section>

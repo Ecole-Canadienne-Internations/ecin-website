@@ -22,10 +22,8 @@ const navItems: NavItem[] = [
   {
     label: "Nos Cycles",
     children: [
-      { label: "Primaire (1ère-3ème)", href: "/cycles/primaire", desc: "Équivalent CP à CE2" },
-      { label: "Élémentaire (4ème-5ème)", href: "/cycles/elementaire", desc: "Équivalent CM1 à CM2" },
-      { label: "Intermédiaire (6ème-8ème)", href: "/cycles/intermediaire", desc: "Équivalent 6ème à 4ème" },
-      { label: "Secondaire (9ème-12ème)", href: "/cycles/secondaire", desc: "Équivalent 3ème à Terminale" },
+      { label: "École Élémentaire (JK – 8e)", href: "/cycles/elementaire", desc: "Maternelle (SIL) à la 4ème" },
+      { label: "École Secondaire (9e – 12e)", href: "/cycles/secondaire", desc: "3ème à la Terminale — DÉSO" },
     ],
   },
   {
@@ -33,15 +31,16 @@ const navItems: NavItem[] = [
     children: [
       { label: "Prépa Canada", href: "/prepas/canada", desc: "Post-BAC vers les universités canadiennes" },
       { label: "Prépa France & Europe", href: "/prepas/france-angleterre", desc: "Accès aux grandes universités" },
-      { label: "Prépa Sport-études", href: "/prepas/sport-etudes", desc: "Bourses et excellence sportive" },
+      { label: "Prépa Sport-Études", href: "/prepas/sport-etudes", desc: "Bourses et excellence sportive" },
     ],
   },
   {
     label: "Pôles Pro",
     children: [
-      { label: "ITA — Informatique", href: "/programmes/ita", desc: "Certifications IT internationales" },
+      { label: "DTI — Digital", href: "/programmes/dti", desc: "Certifications numériques internationales" },
       { label: "ALC — Langues", href: "/programmes/alc", desc: "Anglais, Français, certifications" },
-      { label: "DTE — Digital Technologie Émergente", href: "/programmes/dte", desc: "Digital et Technologie" },
+      { label: "ITA — Information Technology", href: "/programmes/ita", desc: "Certifications IT internationales" },
+      { label: "Prépa Sport-Études", href: "/prepas/sport-etudes", desc: "Bourses et excellence sportive" },
     ],
   },
   {
@@ -75,7 +74,6 @@ const StickyHeader = () => {
     setActiveMenu(null);
   }, [location]);
 
-  // Hide on scroll down, show on scroll up
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
@@ -113,7 +111,7 @@ const StickyHeader = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-0.5">
+        <nav className="hidden lg:flex items-center gap-0 flex-nowrap">
           {navItems.map((item) => (
             <div
               key={item.label}
@@ -124,15 +122,15 @@ const StickyHeader = () => {
               {item.href ? (
                 <Link
                   to={item.href}
-                  className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-md"
+                  className="flex items-center gap-1 px-2.5 py-2 text-[13px] font-medium text-foreground/80 hover:text-primary transition-colors rounded-md whitespace-nowrap"
                 >
                   {item.label}
                 </Link>
               ) : (
-                <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-md">
+                <button className="flex items-center gap-0.5 px-2.5 py-2 text-[13px] font-medium text-foreground/80 hover:text-primary transition-colors rounded-md whitespace-nowrap">
                   {item.label}
                   <ChevronDown
-                    className={`w-3.5 h-3.5 transition-transform ${activeMenu === item.label ? "rotate-180" : ""}`}
+                    className={`w-3 h-3 transition-transform ${activeMenu === item.label ? "rotate-180" : ""}`}
                   />
                 </button>
               )}

@@ -12,7 +12,6 @@ const Footer = () => {
             <p className="text-sm opacity-70 leading-relaxed">
               L'École Canadienne Inter-Nations est un établissement du système éducatif de la province de l'Ontario. Nous sommes une école privée disposant d'une autorisation (Numéro d'identification: BDICE 882009) du ministère de l'éducation de la province de l'Ontario. L'école a l'autorité d'octroyer des crédits pour la délivrance du diplôme d'études secondaires de l'Ontario (DESO).
             </p>
-            {/* Social links */}
             <div className="flex items-center gap-4 mt-4">
               <a
                 href="https://web.facebook.com/ecolecanadienneinternations/?_rdc=1&_rdr#"
@@ -29,10 +28,11 @@ const Footer = () => {
           <div>
             <h4 className="font-bold text-lg mb-4">Programmes</h4>
             <nav className="flex flex-col gap-2">
-              <Link to="/cycles/primaire" className="text-sm opacity-70 hover:opacity-100 transition-opacity">Primaire</Link>
-              <Link to="/cycles/secondaire" className="text-sm opacity-70 hover:opacity-100 transition-opacity">Secondaire / DÉSO</Link>
+              <Link to="/cycles/elementaire" className="text-sm opacity-70 hover:opacity-100 transition-opacity">École Élémentaire</Link>
+              <Link to="/cycles/secondaire" className="text-sm opacity-70 hover:opacity-100 transition-opacity">École Secondaire / DÉSO</Link>
               <Link to="/prepas/canada" className="text-sm opacity-70 hover:opacity-100 transition-opacity">Prépa Canada</Link>
               <Link to="/programmes/alc" className="text-sm opacity-70 hover:opacity-100 transition-opacity">ALC Langues</Link>
+              <Link to="/programmes/dti" className="text-sm opacity-70 hover:opacity-100 transition-opacity">DTI Digital</Link>
               <Link to="/alumni" className="text-sm opacity-70 hover:opacity-100 transition-opacity">Alumni</Link>
             </nav>
           </div>
