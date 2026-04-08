@@ -1,18 +1,20 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import coverPrimaire from "@/assets/cover-primaire.png";
 import coverPrepaCanada from "@/assets/cover-prepa-canada.png";
 import coverIta from "@/assets/cover-ita.png";
 
-const featured = {
+const fallbackFeatured = {
   date: "5 Fév 2026",
   title: "La vie au campus ECIN : immersion totale",
-  excerpt: "Découvrez le quotidien de nos étudiants dans un environnement bilingue et multiculturel au cœur de Yaoundé. Un cadre d'apprentissage unique qui prépare aux standards internationaux.",
+  excerpt: "Découvrez le quotidien de nos étudiants dans un environnement bilingue et multiculturel au cœur de Yaoundé.",
   tag: "Campus",
   image: coverPrimaire,
 };
 
-const articles = [
+const fallbackArticles = [
   {
     date: "18 Jan 2026",
     title: "Rencontre avec la Haute Commissaire du Canada au Cameroun",
@@ -23,13 +25,48 @@ const articles = [
   {
     date: "2 Jan 2026",
     title: "Programme ITA : la demande croissante en compétences numériques",
-    excerpt: "Importance stratégique des certifications informatiques et opportunités professionnelles pour nos étudiants.",
+    excerpt: "Importance stratégique des certifications informatiques et opportunités professionnelles.",
     tag: "Académique",
     image: coverIta,
   },
 ];
 
 const BlogSection = () => {
+  const { data: dbArticles } = useQuery({
+    queryKey: ["blog-landing"],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("blog_articles")
+        .select("*")
+        .eq("is_published", true)
+        .order("created_at", { ascending: false })
+        .limit(3);
+      return data || [];
+    },
+  });
+
+  const hasDbArticles = dbArticles && dbArticles.length > 0;
+
+  const featured = hasDbArticles
+    ? {
+        date: new Date(dbArticles[0].published_at || dbArticles[0].created_at || "").toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" }),
+        title: dbArticles[0].title,
+        excerpt: dbArticles[0].excerpt || "",
+        tag: dbArticles[0].tag || "Actualité",
+        image: dbArticles[0].image_url || coverPrimaire,
+      }
+    : fallbackFeatured;
+
+  const articles = hasDbArticles
+    ? dbArticles.slice(1, 3).map((a) => ({
+        date: new Date(a.published_at || a.created_at || "").toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" }),
+        title: a.title,
+        excerpt: a.excerpt || "",
+        tag: a.tag || "Actualité",
+        image: a.image_url || coverPrepaCanada,
+      }))
+    : fallbackArticles;
+
   return (
     <section className="py-16 md:py-24 bg-background">
       <div className="container">
