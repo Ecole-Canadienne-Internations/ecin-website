@@ -1,8 +1,8 @@
 import PageLayout from "@/components/PageLayout";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
-import coverPrepaCanada from "@/assets/cover-prepa-canada.png";
-import coverPrepaFrance from "@/assets/cover-prepa-france.png";
+import affichePrepaCanada from "@/assets/affiche-prepa-canada.jpg";
+import affichePrepaFrance from "@/assets/affiche-prepa-france.jpg";
 import coverSportEtudes from "@/assets/cover-sport-etudes.png";
 
 const prepasData: Record<string, { title: string; subtitle: string; badge: string; description: string; features: string[]; cover: string }> = {
@@ -18,7 +18,7 @@ const prepasData: Record<string, { title: string; subtitle: string; badge: strin
       "Immersion dans les standards académiques canadiens",
       "Suivi personnalisé jusqu'à l'arrivée au Canada",
     ],
-    cover: coverPrepaCanada,
+    cover: affichePrepaCanada,
   },
   "france-angleterre": {
     title: "Prépa France & Angleterre",
@@ -32,7 +32,7 @@ const prepasData: Record<string, { title: string; subtitle: string; badge: strin
       "Simulation d'entretiens et coaching personnalisé",
       "Suivi de la procédure de visa",
     ],
-    cover: coverPrepaFrance,
+    cover: affichePrepaFrance,
   },
   "sport-etudes": {
     title: "Sport-Études",

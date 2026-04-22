@@ -1,15 +1,52 @@
 import { motion } from "framer-motion";
-import { Bot, Monitor, BookOpen } from "lucide-react";
+import { Bot, Monitor, BookOpen, Sparkles } from "lucide-react";
+import afficheRobotique from "@/assets/affiche-dtc-robotique.jpg";
+import afficheIA from "@/assets/affiche-dtc-ia.jpg";
+import afficheFormation from "@/assets/affiche-dtc-formation.jpg";
+import afficheAnglais from "@/assets/affiche-alc-anglais.jpg";
+import afficheAllemand from "@/assets/affiche-alc-allemand.jpg";
 
-const courses = [
-  { icon: <Bot className="w-7 h-7 text-primary" />, title: "Robotique", desc: "Initiation à la robotique et à la programmation pour les jeunes esprits curieux." },
-  { icon: <Monitor className="w-7 h-7 text-primary" />, title: "Digital", desc: "Compétences numériques, création de contenu et outils digitaux modernes." },
-  { icon: <BookOpen className="w-7 h-7 text-primary" />, title: "Langues", desc: "Cours intensifs d'anglais et de français avec certifications." },
+const highlights = [
+  {
+    icon: <Bot className="w-6 h-6 text-primary" />,
+    title: "Atelier Robotique",
+    desc: "Montage, manipulation et initiation au coding pour les jeunes esprits curieux.",
+    image: afficheRobotique,
+    tag: "DTE",
+  },
+  {
+    icon: <Sparkles className="w-6 h-6 text-primary" />,
+    title: "IA & Freelancing",
+    desc: "Maîtrisez ChatGPT, Midjourney et lancez votre activité freelance.",
+    image: afficheIA,
+    tag: "DTE",
+  },
+  {
+    icon: <Monitor className="w-6 h-6 text-primary" />,
+    title: "Compétences d'avenir",
+    desc: "IA, IoT, Blockchain, AR/VR et création de contenu digital.",
+    image: afficheFormation,
+    tag: "DTE",
+  },
+  {
+    icon: <BookOpen className="w-6 h-6 text-primary" />,
+    title: "Cours d'Anglais",
+    desc: "Du niveau A1 à C2. Préparation IELTS, TOEFL, TOEIC, Duolingo.",
+    image: afficheAnglais,
+    tag: "ALC",
+  },
+  {
+    icon: <BookOpen className="w-6 h-6 text-primary" />,
+    title: "Cours d'Allemand",
+    desc: "Du niveau A1 à C2. Préparation à l'examen Goethe.",
+    image: afficheAllemand,
+    tag: "ALC",
+  },
 ];
 
 const VacationCoursesSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-primary/5">
+    <section className="py-16 md:py-24 bg-background">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -18,34 +55,51 @@ const VacationCoursesSection = () => {
           className="text-center mb-12"
         >
           <span className="inline-block bg-primary text-primary-foreground text-xs font-bold px-4 py-1.5 rounded-full mb-4 uppercase tracking-wide">
-            🎓 Cours de Vacances
+            🎓 Rentrée — 20 Avril 2026
           </span>
           <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-3">
-            Cours de vacances spécialisés
+            Cours de Vacances Spécialisés
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Profitez des vacances pour développer de nouvelles compétences en robotique, digital et langues.
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Profitez des vacances pour développer de nouvelles compétences avec nos pôles{" "}
+            <span className="text-primary font-semibold">DTE (Digital & Technologie Émergente)</span> et{" "}
+            <span className="text-primary font-semibold">ALC (Academic Language Center)</span>.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {courses.map((c, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+          {highlights.map((c, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-background border border-border rounded-xl p-6 text-center hover:shadow-lg transition-shadow"
+              transition={{ delay: i * 0.08 }}
+              className="group bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all"
             >
-              <div className="flex justify-center mb-4">{c.icon}</div>
-              <h3 className="text-lg font-bold text-foreground mb-2">{c.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{c.desc}</p>
+              <div className="relative aspect-[3/4] overflow-hidden bg-secondary">
+                <img
+                  src={c.image}
+                  alt={c.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 right-3 bg-primary text-primary-foreground text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
+                  {c.tag}
+                </div>
+              </div>
+              <div className="p-5">
+                <div className="flex items-center gap-2 mb-2">
+                  {c.icon}
+                  <h3 className="text-base font-bold text-foreground">{c.title}</h3>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">{c.desc}</p>
+              </div>
             </motion.div>
           ))}
         </div>
 
-        <div className="text-center mt-10">
+        <div className="text-center">
           <a
             href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20inscrire%20mon%20enfant%20aux%20cours%20de%20vacances."
             target="_blank"
