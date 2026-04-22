@@ -1,15 +1,17 @@
 import { motion } from "framer-motion";
 import { Award } from "lucide-react";
+import affichePrepaCanada from "@/assets/affiche-prepa-canada.jpg";
+import affichePrepaFrance from "@/assets/affiche-prepa-france.jpg";
 
 const ScholarshipSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-secondary">
-      <div className="container max-w-3xl">
+    <section className="py-16 md:py-24 bg-background">
+      <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center"
+          className="text-center mb-12"
         >
           <div className="flex justify-center mb-6">
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
@@ -22,9 +24,34 @@ const ScholarshipSection = () => {
           <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
             Concours de Bourse ECIN
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto mb-8 leading-relaxed">
+          <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             L'ECIN offre des bourses d'excellence aux élèves les plus méritants. Participez à notre concours annuel de bourses et bénéficiez d'une réduction significative sur vos frais de scolarité.
           </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-10">
+          {[affichePrepaCanada, affichePrepaFrance].map((img, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="group rounded-2xl overflow-hidden border border-border bg-card hover:shadow-xl hover:-translate-y-1 transition-all"
+            >
+              <div className="aspect-[3/4] overflow-hidden bg-secondary">
+                <img
+                  src={img}
+                  alt={`Affiche concours de bourse ECIN ${i + 1}`}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="text-center">
           <a
             href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20avoir%20des%20informations%20sur%20le%20concours%20de%20bourse%20ECIN."
             target="_blank"
@@ -33,7 +60,7 @@ const ScholarshipSection = () => {
           >
             En savoir plus sur les bourses
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
