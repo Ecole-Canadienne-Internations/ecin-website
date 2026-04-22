@@ -1,12 +1,18 @@
 import { Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 import coverElementaire from "@/assets/cover-elementaire.png";
-import coverAlc from "@/assets/cover-alc.png";
 import coverSportEtudes from "@/assets/cover-sport-etudes.png";
+import actualiteHautCommissariat from "@/assets/actualite-haut-commissariat.jpg";
 
 const events = [
+  {
+    date: "Actualité",
+    title: "Le Directeur Général de l'ECIN au Haut-Commissariat du Canada",
+    location: "Fête du Canada — Ottawa",
+    image: actualiteHautCommissariat,
+    badge: "Actualité",
+  },
   { date: "15 Mars 2026", title: "Journée Portes Ouvertes", location: "Campus Bonamoussadi, Douala", image: coverElementaire },
-  { date: "22 Avril 2026", title: "Webinaire : Étudier au Canada", location: "En ligne", image: coverAlc },
   { date: "10 Mai 2026", title: "Concours de Bourses ECIN", location: "Campus Yaoundé, Bastos", image: coverSportEtudes },
 ];
 

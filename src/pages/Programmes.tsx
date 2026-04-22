@@ -1,8 +1,9 @@
 import PageLayout from "@/components/PageLayout";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
-import coverAlc from "@/assets/cover-alc.png";
+import coverAlc from "@/assets/affiche-alc-anglais.jpg";
 import coverIta from "@/assets/cover-ita.png";
+import coverDte from "@/assets/affiche-dtc-formation.jpg";
 
 const programmesData: Record<string, { title: string; subtitle: string; badge: string; description: string; features: string[]; cover: string }> = {
   alc: {
@@ -48,7 +49,7 @@ const programmesData: Record<string, { title: string; subtitle: string; badge: s
       "Cloud Computing et DevOps",
       "Blockchain et technologies décentralisées",
     ],
-    cover: coverIta,
+    cover: coverDte,
   },
 };
 
