@@ -26,7 +26,7 @@ const PhotoGallery = () => {
 
   useEffect(() => {
     const load = async () => {
-      const { data } = await db.from("photos").select("*").eq("is_published", true).order("created_at", { ascending: false });
+      const { data } = await db.from("photos").select("*").eq("is_published", true).or(`published_at.is.null,published_at.lte.${new Date().toISOString()}`).order("created_at", { ascending: false });
       if (data && data.length > 0) setDynamicPhotos(data);
     };
     load();
