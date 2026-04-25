@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_team_members: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          display_name: string | null
+          email: string
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          display_name?: string | null
+          email: string
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          display_name?: string | null
+          email?: string
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       blog_articles: {
         Row: {
           author_id: string | null
@@ -25,6 +55,7 @@ export type Database = {
           is_published: boolean | null
           published_at: string | null
           scheduled_at: string | null
+          status: string
           tag: string | null
           title: string
           updated_at: string | null
@@ -39,6 +70,7 @@ export type Database = {
           is_published?: boolean | null
           published_at?: string | null
           scheduled_at?: string | null
+          status?: string
           tag?: string | null
           title: string
           updated_at?: string | null
@@ -53,6 +85,7 @@ export type Database = {
           is_published?: boolean | null
           published_at?: string | null
           scheduled_at?: string | null
+          status?: string
           tag?: string | null
           title?: string
           updated_at?: string | null
@@ -68,6 +101,9 @@ export type Database = {
           image_url: string | null
           is_published: boolean | null
           location: string | null
+          published_at: string | null
+          scheduled_at: string | null
+          status: string
           title: string
           updated_at: string | null
         }
@@ -79,6 +115,9 @@ export type Database = {
           image_url?: string | null
           is_published?: boolean | null
           location?: string | null
+          published_at?: string | null
+          scheduled_at?: string | null
+          status?: string
           title: string
           updated_at?: string | null
         }
@@ -90,8 +129,50 @@ export type Database = {
           image_url?: string | null
           is_published?: boolean | null
           location?: string | null
+          published_at?: string | null
+          scheduled_at?: string | null
+          status?: string
           title?: string
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      inscription_leads: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string
+          id: string
+          message: string | null
+          phone: string
+          programme: string
+          source: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name: string
+          id?: string
+          message?: string | null
+          phone: string
+          programme: string
+          source?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string
+          id?: string
+          message?: string | null
+          phone?: string
+          programme?: string
+          source?: string
+          status?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -102,7 +183,11 @@ export type Database = {
           id: string
           image_url: string
           is_published: boolean | null
+          published_at: string | null
+          scheduled_at: string | null
           span: string | null
+          status: string
+          title: string | null
         }
         Insert: {
           alt_text?: string | null
@@ -110,7 +195,11 @@ export type Database = {
           id?: string
           image_url: string
           is_published?: boolean | null
+          published_at?: string | null
+          scheduled_at?: string | null
           span?: string | null
+          status?: string
+          title?: string | null
         }
         Update: {
           alt_text?: string | null
@@ -118,7 +207,11 @@ export type Database = {
           id?: string
           image_url?: string
           is_published?: boolean | null
+          published_at?: string | null
+          scheduled_at?: string | null
           span?: string | null
+          status?: string
+          title?: string | null
         }
         Relationships: []
       }
