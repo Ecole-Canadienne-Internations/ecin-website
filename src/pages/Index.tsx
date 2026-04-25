@@ -16,6 +16,7 @@ import BlogSection from "@/components/BlogSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import InscriptionWidget from "@/components/InscriptionWidget";
 
 const Index = () => {
   return (
@@ -38,6 +39,7 @@ const Index = () => {
       <FAQSection />
       <Footer />
       <WhatsAppButton />
+      <InscriptionWidget />
     </div>
   );
 };

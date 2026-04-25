@@ -11,6 +11,7 @@ const Blog = () => {
         .from("blog_articles")
         .select("*")
         .eq("is_published", true)
+        .or(`published_at.is.null,published_at.lte.${new Date().toISOString()}`)
         .order("created_at", { ascending: false });
       if (error) throw error;
       return data || [];

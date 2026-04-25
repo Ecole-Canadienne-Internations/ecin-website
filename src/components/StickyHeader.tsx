@@ -162,9 +162,7 @@ const StickyHeader = () => {
         <div className="hidden lg:flex items-center gap-3">
           <LanguageToggle />
           <a
-            href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20démarrer%20mon%20inscription."
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/#inscription"
             className="bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
           >
             S'inscrire
@@ -230,9 +228,7 @@ const StickyHeader = () => {
               +1 647 692 6009
             </a>
             <a
-              href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20démarrer%20mon%20inscription."
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/#inscription"
               className="bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold text-center hover:opacity-90 mx-2"
             >
               S'inscrire
