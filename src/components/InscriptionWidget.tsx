@@ -1,6 +1,7 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { CheckCircle2, GraduationCap, Loader2, Phone, Send, Sparkles, X } from "lucide-react";
+import { CheckCircle2, GraduationCap, Loader2, Phone, Send, X } from "lucide-react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
@@ -8,7 +9,7 @@ import { toast } from "@/hooks/use-toast";
 const db = supabase as any;
 
 const programmes = [
-  "DTI",
+  "DTE",
   "ALC",
   "Prépa Sport-Études",
   "Prépa Canada",
@@ -20,7 +21,7 @@ const leadSchema = z.object({
   full_name: z.string().trim().min(2, "Nom trop court").max(120),
   phone: z.string().trim().min(6, "Numéro invalide").max(40),
   email: z.string().trim().email("Email invalide").max(255).optional().or(z.literal("")),
-  programme: z.enum(["DTI", "ALC", "Prépa Sport-Études", "Prépa Canada", "Prépa France", "Prépa Angleterre"]),
+  programme: z.enum(["DTE", "ALC", "Prépa Sport-Études", "Prépa Canada", "Prépa France", "Prépa Angleterre"]),
   message: z.string().trim().max(800).optional(),
 });
 
@@ -32,9 +33,21 @@ const InscriptionWidget = () => {
     full_name: "",
     phone: "",
     email: "",
-    programme: "DTI",
+    programme: "DTE",
     message: "",
   });
+  const location = useLocation();
+
+  useEffect(() => {
+    const shouldOpen = location.hash === "#inscription" || new URLSearchParams(location.search).get("inscription") === "1";
+    if (shouldOpen) setOpen(true);
+  }, [location.hash, location.search]);
+
+  useEffect(() => {
+    const handler = () => setOpen(true);
+    window.addEventListener("ecin:open-inscription", handler);
+    return () => window.removeEventListener("ecin:open-inscription", handler);
+  }, []);
 
   const whatsappText = useMemo(
     () => encodeURIComponent(`Bonjour, je souhaite m'inscrire à ECIN. Filière: ${form.programme}.`),
@@ -70,13 +83,6 @@ const InscriptionWidget = () => {
 
   return (
     <>
-      <button
-        onClick={() => setOpen(true)}
-        className="fixed bottom-6 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-primary-foreground shadow-xl shadow-primary/25 transition-transform hover:scale-105 md:bottom-8"
-      >
-        <Sparkles className="h-4 w-4" /> Inscription rapide
-      </button>
-
       <AnimatePresence>
         {open && (
           <motion.div

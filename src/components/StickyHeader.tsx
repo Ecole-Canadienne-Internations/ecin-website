@@ -37,7 +37,7 @@ const navItems: NavItem[] = [
   {
     label: "Pôles Pro",
     children: [
-      { label: "DTI — Digital", href: "/programmes/dti", desc: "Certifications numériques internationales" },
+      { label: "DTE — Digital & Technologie Émergente", href: "/programmes/dte", desc: "Certifications numériques internationales" },
       { label: "ALC — Langues", href: "/programmes/alc", desc: "Anglais, Français, certifications" },
       { label: "ITA — Information Technology", href: "/programmes/ita", desc: "Certifications IT internationales" },
       { label: "Prépa Sport-Études", href: "/prepas/sport-etudes", desc: "Bourses et excellence sportive" },

@@ -6,7 +6,7 @@ import logoDti from "@/assets/logo-dti.jpeg";
 const poles = [
   {
     icon: <Cpu className="w-8 h-8 text-primary" />,
-    title: "DTI — Digital",
+    title: "DTE — Digital & Technologie Émergente",
     desc: "Certifications en technologies numériques et compétences digitales reconnues à l'international.",
     logo: logoDti,
   },

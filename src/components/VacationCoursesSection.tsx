@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { Bot, Monitor, BookOpen, Sparkles } from "lucide-react";
+import { Bot, Monitor, BookOpen, Sparkles, GraduationCap } from "lucide-react";
 import afficheRobotique from "@/assets/affiche-dtc-robotique.jpg";
 import afficheIA from "@/assets/affiche-dtc-ia.jpg";
 import afficheFormation from "@/assets/affiche-dtc-formation.jpg";
 import afficheAnglais from "@/assets/affiche-alc-anglais.jpg";
 import afficheAllemand from "@/assets/affiche-alc-allemand.jpg";
+import affichePrepaCanada from "@/assets/affiche-prepa-canada.jpg";
 
 const highlights = [
   {
@@ -18,14 +19,14 @@ const highlights = [
     icon: <Sparkles className="w-6 h-6 text-primary" />,
     title: "IA & Freelancing",
     desc: "Maîtrisez ChatGPT, Midjourney et lancez votre activité freelance.",
-    image: afficheIA,
+    image: afficheFormation,
     tag: "DTE",
   },
   {
     icon: <Monitor className="w-6 h-6 text-primary" />,
     title: "Compétences d'avenir",
     desc: "IA, IoT, Blockchain, AR/VR et création de contenu digital.",
-    image: afficheFormation,
+    image: afficheIA,
     tag: "DTE",
   },
   {
@@ -41,6 +42,13 @@ const highlights = [
     desc: "Du niveau A1 à C2. Préparation à l'examen Goethe.",
     image: afficheAllemand,
     tag: "ALC",
+  },
+  {
+    icon: <GraduationCap className="w-6 h-6 text-primary" />,
+    title: "Prépa Canada",
+    desc: "Obtenez un diplôme canadien (DESO) et accédez aux universités et collèges canadiens.",
+    image: affichePrepaCanada,
+    tag: "Prépa",
   },
 ];
 

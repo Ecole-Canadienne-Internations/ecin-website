@@ -32,7 +32,7 @@ const Footer = () => {
               <Link to="/cycles/secondaire" className="text-sm opacity-70 hover:opacity-100 transition-opacity">École Secondaire / DÉSO</Link>
               <Link to="/prepas/canada" className="text-sm opacity-70 hover:opacity-100 transition-opacity">Prépa Canada</Link>
               <Link to="/programmes/alc" className="text-sm opacity-70 hover:opacity-100 transition-opacity">ALC Langues</Link>
-              <Link to="/programmes/dti" className="text-sm opacity-70 hover:opacity-100 transition-opacity">DTI Digital</Link>
+              <Link to="/programmes/dte" className="text-sm opacity-70 hover:opacity-100 transition-opacity">DTE Digital</Link>
               <Link to="/alumni" className="text-sm opacity-70 hover:opacity-100 transition-opacity">Alumni</Link>
             </nav>
           </div>
