@@ -188,9 +188,12 @@ const AdminDashboard = () => {
     e.preventDefault();
     if (!isOwner) return toast({ title: "Action réservée au owner", variant: "destructive" });
     setSaving(true);
-    const { error } = await supabase.functions.invoke("create-team-member", { body: teamForm });
+    const { data, error } = await supabase.functions.invoke("create-team-member", { body: teamForm });
     setSaving(false);
-    if (error) return toast({ title: "Erreur", description: error.message, variant: "destructive" });
+    const fnError = (data as any)?.error;
+    if (error || fnError) {
+      return toast({ title: "Erreur création admin", description: fnError || error?.message || "Erreur inconnue", variant: "destructive" });
+    }
     toast({ title: "Admin créé", description: teamForm.email });
     setTeamForm(emptyTeam); loadData();
   };
