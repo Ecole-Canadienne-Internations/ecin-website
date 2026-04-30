@@ -32,7 +32,7 @@ const InscriptionWidget = () => {
     full_name: "",
     phone: "",
     email: "",
-    programme: "DTI",
+    programme: "DTE",
     message: "",
   });
 
