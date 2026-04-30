@@ -8,7 +8,7 @@ import { toast } from "@/hooks/use-toast";
 const db = supabase as any;
 
 const programmes = [
-  "DTI",
+  "DTE",
   "ALC",
   "Prépa Sport-Études",
   "Prépa Canada",
@@ -20,7 +20,7 @@ const leadSchema = z.object({
   full_name: z.string().trim().min(2, "Nom trop court").max(120),
   phone: z.string().trim().min(6, "Numéro invalide").max(40),
   email: z.string().trim().email("Email invalide").max(255).optional().or(z.literal("")),
-  programme: z.enum(["DTI", "ALC", "Prépa Sport-Études", "Prépa Canada", "Prépa France", "Prépa Angleterre"]),
+  programme: z.enum(["DTE", "ALC", "Prépa Sport-Études", "Prépa Canada", "Prépa France", "Prépa Angleterre"]),
   message: z.string().trim().max(800).optional(),
 });
 
