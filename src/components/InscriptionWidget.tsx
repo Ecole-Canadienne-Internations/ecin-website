@@ -36,6 +36,18 @@ const InscriptionWidget = () => {
     programme: "DTE",
     message: "",
   });
+  const location = useLocation();
+
+  useEffect(() => {
+    const shouldOpen = location.hash === "#inscription" || new URLSearchParams(location.search).get("inscription") === "1";
+    if (shouldOpen) setOpen(true);
+  }, [location.hash, location.search]);
+
+  useEffect(() => {
+    const handler = () => setOpen(true);
+    window.addEventListener("ecin:open-inscription", handler);
+    return () => window.removeEventListener("ecin:open-inscription", handler);
+  }, []);
 
   const whatsappText = useMemo(
     () => encodeURIComponent(`Bonjour, je souhaite m'inscrire à ECIN. Filière: ${form.programme}.`),
@@ -71,13 +83,6 @@ const InscriptionWidget = () => {
 
   return (
     <>
-      <button
-        onClick={() => setOpen(true)}
-        className="fixed bottom-6 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-primary-foreground shadow-xl shadow-primary/25 transition-transform hover:scale-105 md:bottom-8"
-      >
-        <Sparkles className="h-4 w-4" /> Inscription rapide
-      </button>
-
       <AnimatePresence>
         {open && (
           <motion.div
