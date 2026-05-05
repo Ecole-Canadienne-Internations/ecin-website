@@ -436,8 +436,7 @@ const AdminDashboard = () => {
                 <input placeholder="Titre" value={articleForm.title} onChange={(e) => setArticleForm({ ...articleForm, title: e.target.value })} required className={inputClass} />
                 <input placeholder="Résumé" value={articleForm.excerpt} onChange={(e) => setArticleForm({ ...articleForm, excerpt: e.target.value })} className={inputClass} />
                 <textarea placeholder="Contenu" value={articleForm.content} onChange={(e) => setArticleForm({ ...articleForm, content: e.target.value })} rows={6} className={inputClass} />
-                <div className="grid gap-3 md:grid-cols-2">
-                  <input placeholder="Tag" value={articleForm.tag} onChange={(e) => setArticleForm({ ...articleForm, tag: e.target.value })} className={inputClass} />
+                <input placeholder="Tag" value={articleForm.tag} onChange={(e) => setArticleForm({ ...articleForm, tag: e.target.value })} className={inputClass} />
                 <div className="grid gap-3 md:grid-cols-2">
                   <input placeholder="URL de l'image" value={articleForm.image_url} onChange={(e) => setArticleForm({ ...articleForm, image_url: e.target.value })} className={inputClass} />
                   <label className="flex items-center justify-center gap-2 rounded-xl border-2 border-dashed border-zinc-300 px-4 py-2.5 text-sm font-semibold text-zinc-600 hover:border-primary hover:text-primary cursor-pointer transition-colors">
