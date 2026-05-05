@@ -218,6 +218,23 @@ const AdminDashboard = () => {
     setPhotoForm(emptyPhoto); setEditingPhotoId(null); loadData();
   };
 
+  const handleUploadPhoto = async (file: File | undefined, target: "photo" | "article" | "event") => {
+    if (!file) return;
+    if (file.size > 10 * 1024 * 1024) {
+      return toast({ title: "Fichier trop lourd", description: "Max 10 Mo", variant: "destructive" });
+    }
+    const ext = file.name.split(".").pop() || "jpg";
+    const path = `${target}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+    const { error: upErr } = await supabase.storage.from("site-photos").upload(path, file, { cacheControl: "3600", upsert: false });
+    if (upErr) return toast({ title: "Échec upload", description: upErr.message, variant: "destructive" });
+    const { data } = supabase.storage.from("site-photos").getPublicUrl(path);
+    const url = data.publicUrl;
+    if (target === "photo") setPhotoForm((f) => ({ ...f, image_url: url }));
+    if (target === "article") setArticleForm((f) => ({ ...f, image_url: url }));
+    if (target === "event") setEventForm((f) => ({ ...f, image_url: url }));
+    toast({ title: "Image téléversée" });
+  };
+
   const handleDelete = async (table: string, id: string) => {
     const { error } = await db.from(table).delete().eq("id", id);
     if (error) return toast({ title: "Erreur", description: error.message, variant: "destructive" });
