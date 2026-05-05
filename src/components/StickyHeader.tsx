@@ -228,12 +228,13 @@ const StickyHeader = () => {
               <Phone className="w-4 h-4" />
               +1 647 692 6009
             </a>
-            <a
-              href="/#inscription"
+            <button
+              type="button"
+              onClick={() => { setMobileOpen(false); window.dispatchEvent(new Event("ecin:open-inscription")); }}
               className="bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold text-center hover:opacity-90 mx-2"
             >
               S'inscrire
-            </a>
+            </button>
           </nav>
         </div>
       )}
