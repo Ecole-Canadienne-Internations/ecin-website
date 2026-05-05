@@ -161,12 +161,13 @@ const StickyHeader = () => {
 
         <div className="hidden lg:flex items-center gap-3">
           <LanguageToggle />
-          <a
-            href="/#inscription"
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event("ecin:open-inscription"))}
             className="bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
           >
             S'inscrire
-          </a>
+          </button>
         </div>
 
         <button
