@@ -3,6 +3,7 @@ import TopBar from "@/components/TopBar";
 import StickyHeader from "@/components/StickyHeader";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import InscriptionWidget from "@/components/InscriptionWidget";
 
 interface PageLayoutProps {
   children: ReactNode;
@@ -16,6 +17,7 @@ const PageLayout = ({ children }: PageLayoutProps) => {
       <main className="pt-[calc(2.25rem+5rem)]">{children}</main>
       <Footer />
       <WhatsAppButton />
+      <InscriptionWidget />
     </div>
   );
 };
