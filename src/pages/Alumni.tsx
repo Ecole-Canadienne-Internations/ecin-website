@@ -59,14 +59,13 @@ const Alumni = () => {
           </motion.div>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
-            <a
-              href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20rejoindre%20la%20prochaine%20promotion."
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event("ecin:open-inscription"))}
               className="inline-flex items-center justify-center bg-primary text-primary-foreground px-7 py-3.5 rounded-full text-sm font-bold hover:opacity-90 transition-opacity"
             >
               Démarrer mon inscription
-            </a>
+            </button>
           </motion.div>
         </div>
       </section>
