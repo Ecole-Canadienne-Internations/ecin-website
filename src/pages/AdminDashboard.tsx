@@ -470,7 +470,13 @@ const AdminDashboard = () => {
               <form onSubmit={handleSavePhoto} className={`${cardClass} space-y-4`}>
                 <FormTitle title={editingPhotoId ? "Modifier la photo" : "Ajouter une photo"} onCancel={editingPhotoId ? () => { setEditingPhotoId(null); setPhotoForm(emptyPhoto); } : undefined} />
                 <input placeholder="Titre" value={photoForm.title} onChange={(e) => setPhotoForm({ ...photoForm, title: e.target.value })} className={inputClass} />
-                <input placeholder="URL de l'image" value={photoForm.image_url} onChange={(e) => setPhotoForm({ ...photoForm, image_url: e.target.value })} required className={inputClass} />
+                <input placeholder="URL de l'image (ou téléverse ci-dessous)" value={photoForm.image_url} onChange={(e) => setPhotoForm({ ...photoForm, image_url: e.target.value })} className={inputClass} />
+                <label className="flex items-center justify-center gap-2 rounded-xl border-2 border-dashed border-zinc-300 px-4 py-3 text-sm font-semibold text-zinc-600 hover:border-primary hover:text-primary cursor-pointer transition-colors">
+                  <Image className="h-4 w-4" />
+                  Téléverser une image
+                  <input type="file" accept="image/*" className="hidden" onChange={(e) => handleUploadPhoto(e.target.files?.[0], "photo")} />
+                </label>
+                {photoForm.image_url && <img src={photoForm.image_url} alt="Aperçu" className="h-32 w-full object-cover rounded-lg border" />}
                 <input placeholder="Texte alternatif" value={photoForm.alt_text} onChange={(e) => setPhotoForm({ ...photoForm, alt_text: e.target.value })} className={inputClass} />
                 {renderPublishControls(photoForm.publishMode, photoForm.scheduled_at, (mode) => setPhotoForm({ ...photoForm, publishMode: mode }), (value) => setPhotoForm({ ...photoForm, scheduled_at: value }))}
                 <button disabled={saving} className={primaryButton}>{editingPhotoId ? <Save className="h-4 w-4" /> : <Plus className="h-4 w-4" />} {editingPhotoId ? "Enregistrer" : "Ajouter"}</button>
