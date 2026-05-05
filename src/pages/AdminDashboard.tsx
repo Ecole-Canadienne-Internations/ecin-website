@@ -461,7 +461,13 @@ const AdminDashboard = () => {
                   <input placeholder="Lieu" value={eventForm.location} onChange={(e) => setEventForm({ ...eventForm, location: e.target.value })} className={inputClass} />
                   <input type="datetime-local" value={eventForm.event_date} onChange={(e) => setEventForm({ ...eventForm, event_date: e.target.value })} required className={inputClass} />
                 </div>
-                <input placeholder="URL de l'image" value={eventForm.image_url} onChange={(e) => setEventForm({ ...eventForm, image_url: e.target.value })} className={inputClass} />
+                <div className="grid gap-3 md:grid-cols-2">
+                  <input placeholder="URL de l'image" value={eventForm.image_url} onChange={(e) => setEventForm({ ...eventForm, image_url: e.target.value })} className={inputClass} />
+                  <label className="flex items-center justify-center gap-2 rounded-xl border-2 border-dashed border-zinc-300 px-4 py-2.5 text-sm font-semibold text-zinc-600 hover:border-primary hover:text-primary cursor-pointer transition-colors">
+                    <Image className="h-4 w-4" /> Téléverser
+                    <input type="file" accept="image/*" className="hidden" onChange={(e) => handleUploadPhoto(e.target.files?.[0], "event")} />
+                  </label>
+                </div>
                 {renderPublishControls(eventForm.publishMode, eventForm.scheduled_at, (mode) => setEventForm({ ...eventForm, publishMode: mode }), (value) => setEventForm({ ...eventForm, scheduled_at: value }))}
                 <button disabled={saving} className={primaryButton}>{editingEventId ? <Save className="h-4 w-4" /> : <Plus className="h-4 w-4" />} {editingEventId ? "Enregistrer" : "Créer"}</button>
               </form>
