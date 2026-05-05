@@ -218,6 +218,23 @@ const AdminDashboard = () => {
     setPhotoForm(emptyPhoto); setEditingPhotoId(null); loadData();
   };
 
+  const handleUploadPhoto = async (file: File | undefined, target: "photo" | "article" | "event") => {
+    if (!file) return;
+    if (file.size > 10 * 1024 * 1024) {
+      return toast({ title: "Fichier trop lourd", description: "Max 10 Mo", variant: "destructive" });
+    }
+    const ext = file.name.split(".").pop() || "jpg";
+    const path = `${target}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+    const { error: upErr } = await supabase.storage.from("site-photos").upload(path, file, { cacheControl: "3600", upsert: false });
+    if (upErr) return toast({ title: "Échec upload", description: upErr.message, variant: "destructive" });
+    const { data } = supabase.storage.from("site-photos").getPublicUrl(path);
+    const url = data.publicUrl;
+    if (target === "photo") setPhotoForm((f) => ({ ...f, image_url: url }));
+    if (target === "article") setArticleForm((f) => ({ ...f, image_url: url }));
+    if (target === "event") setEventForm((f) => ({ ...f, image_url: url }));
+    toast({ title: "Image téléversée" });
+  };
+
   const handleDelete = async (table: string, id: string) => {
     const { error } = await db.from(table).delete().eq("id", id);
     if (error) return toast({ title: "Erreur", description: error.message, variant: "destructive" });
@@ -419,9 +436,13 @@ const AdminDashboard = () => {
                 <input placeholder="Titre" value={articleForm.title} onChange={(e) => setArticleForm({ ...articleForm, title: e.target.value })} required className={inputClass} />
                 <input placeholder="Résumé" value={articleForm.excerpt} onChange={(e) => setArticleForm({ ...articleForm, excerpt: e.target.value })} className={inputClass} />
                 <textarea placeholder="Contenu" value={articleForm.content} onChange={(e) => setArticleForm({ ...articleForm, content: e.target.value })} rows={6} className={inputClass} />
+                <input placeholder="Tag" value={articleForm.tag} onChange={(e) => setArticleForm({ ...articleForm, tag: e.target.value })} className={inputClass} />
                 <div className="grid gap-3 md:grid-cols-2">
-                  <input placeholder="Tag" value={articleForm.tag} onChange={(e) => setArticleForm({ ...articleForm, tag: e.target.value })} className={inputClass} />
                   <input placeholder="URL de l'image" value={articleForm.image_url} onChange={(e) => setArticleForm({ ...articleForm, image_url: e.target.value })} className={inputClass} />
+                  <label className="flex items-center justify-center gap-2 rounded-xl border-2 border-dashed border-zinc-300 px-4 py-2.5 text-sm font-semibold text-zinc-600 hover:border-primary hover:text-primary cursor-pointer transition-colors">
+                    <Image className="h-4 w-4" /> Téléverser
+                    <input type="file" accept="image/*" className="hidden" onChange={(e) => handleUploadPhoto(e.target.files?.[0], "article")} />
+                  </label>
                 </div>
                 {renderPublishControls(articleForm.publishMode, articleForm.scheduled_at, (mode) => setArticleForm({ ...articleForm, publishMode: mode }), (value) => setArticleForm({ ...articleForm, scheduled_at: value }))}
                 <button disabled={saving} className={primaryButton}>{editingArticleId ? <Save className="h-4 w-4" /> : <Plus className="h-4 w-4" />} {editingArticleId ? "Enregistrer" : "Créer"}</button>
@@ -440,7 +461,13 @@ const AdminDashboard = () => {
                   <input placeholder="Lieu" value={eventForm.location} onChange={(e) => setEventForm({ ...eventForm, location: e.target.value })} className={inputClass} />
                   <input type="datetime-local" value={eventForm.event_date} onChange={(e) => setEventForm({ ...eventForm, event_date: e.target.value })} required className={inputClass} />
                 </div>
-                <input placeholder="URL de l'image" value={eventForm.image_url} onChange={(e) => setEventForm({ ...eventForm, image_url: e.target.value })} className={inputClass} />
+                <div className="grid gap-3 md:grid-cols-2">
+                  <input placeholder="URL de l'image" value={eventForm.image_url} onChange={(e) => setEventForm({ ...eventForm, image_url: e.target.value })} className={inputClass} />
+                  <label className="flex items-center justify-center gap-2 rounded-xl border-2 border-dashed border-zinc-300 px-4 py-2.5 text-sm font-semibold text-zinc-600 hover:border-primary hover:text-primary cursor-pointer transition-colors">
+                    <Image className="h-4 w-4" /> Téléverser
+                    <input type="file" accept="image/*" className="hidden" onChange={(e) => handleUploadPhoto(e.target.files?.[0], "event")} />
+                  </label>
+                </div>
                 {renderPublishControls(eventForm.publishMode, eventForm.scheduled_at, (mode) => setEventForm({ ...eventForm, publishMode: mode }), (value) => setEventForm({ ...eventForm, scheduled_at: value }))}
                 <button disabled={saving} className={primaryButton}>{editingEventId ? <Save className="h-4 w-4" /> : <Plus className="h-4 w-4" />} {editingEventId ? "Enregistrer" : "Créer"}</button>
               </form>
@@ -453,7 +480,13 @@ const AdminDashboard = () => {
               <form onSubmit={handleSavePhoto} className={`${cardClass} space-y-4`}>
                 <FormTitle title={editingPhotoId ? "Modifier la photo" : "Ajouter une photo"} onCancel={editingPhotoId ? () => { setEditingPhotoId(null); setPhotoForm(emptyPhoto); } : undefined} />
                 <input placeholder="Titre" value={photoForm.title} onChange={(e) => setPhotoForm({ ...photoForm, title: e.target.value })} className={inputClass} />
-                <input placeholder="URL de l'image" value={photoForm.image_url} onChange={(e) => setPhotoForm({ ...photoForm, image_url: e.target.value })} required className={inputClass} />
+                <input placeholder="URL de l'image (ou téléverse ci-dessous)" value={photoForm.image_url} onChange={(e) => setPhotoForm({ ...photoForm, image_url: e.target.value })} className={inputClass} />
+                <label className="flex items-center justify-center gap-2 rounded-xl border-2 border-dashed border-zinc-300 px-4 py-3 text-sm font-semibold text-zinc-600 hover:border-primary hover:text-primary cursor-pointer transition-colors">
+                  <Image className="h-4 w-4" />
+                  Téléverser une image
+                  <input type="file" accept="image/*" className="hidden" onChange={(e) => handleUploadPhoto(e.target.files?.[0], "photo")} />
+                </label>
+                {photoForm.image_url && <img src={photoForm.image_url} alt="Aperçu" className="h-32 w-full object-cover rounded-lg border" />}
                 <input placeholder="Texte alternatif" value={photoForm.alt_text} onChange={(e) => setPhotoForm({ ...photoForm, alt_text: e.target.value })} className={inputClass} />
                 {renderPublishControls(photoForm.publishMode, photoForm.scheduled_at, (mode) => setPhotoForm({ ...photoForm, publishMode: mode }), (value) => setPhotoForm({ ...photoForm, scheduled_at: value }))}
                 <button disabled={saving} className={primaryButton}>{editingPhotoId ? <Save className="h-4 w-4" /> : <Plus className="h-4 w-4" />} {editingPhotoId ? "Enregistrer" : "Ajouter"}</button>
