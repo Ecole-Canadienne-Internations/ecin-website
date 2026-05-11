@@ -32,9 +32,12 @@ const PhotoGallery = () => {
     load();
   }, []);
 
-  const photos = dynamicPhotos.length > 0
-    ? dynamicPhotos.map((p: any) => ({ src: p.image_url, alt: p.alt_text || "Photo ECIN", span: p.span || "col-span-1 row-span-1" }))
-    : staticPhotos;
+  const mappedDynamic = dynamicPhotos.map((p: any) => ({
+    src: p.image_url,
+    alt: p.alt_text || p.title || "Photo ECIN",
+    span: p.span || "col-span-1 row-span-1",
+  }));
+  const photos = [...mappedDynamic, ...staticPhotos];
 
   return (
     <section id="album" className="py-16 md:py-24 bg-secondary">

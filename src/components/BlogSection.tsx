@@ -46,27 +46,17 @@ const BlogSection = () => {
     },
   });
 
-  const hasDbArticles = dbArticles && dbArticles.length > 0;
+  const mappedDb = (dbArticles || []).map((a: any) => ({
+    date: new Date(a.published_at || a.created_at || "").toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" }),
+    title: a.title,
+    excerpt: a.excerpt || "",
+    tag: a.tag || "Actualité",
+    image: a.image_url || coverPrimaire,
+  }));
 
-  const featured = hasDbArticles
-    ? {
-        date: new Date(dbArticles[0].published_at || dbArticles[0].created_at || "").toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" }),
-        title: dbArticles[0].title,
-        excerpt: dbArticles[0].excerpt || "",
-        tag: dbArticles[0].tag || "Actualité",
-        image: dbArticles[0].image_url || coverPrimaire,
-      }
-    : fallbackFeatured;
-
-  const articles = hasDbArticles
-    ? dbArticles.slice(1, 3).map((a) => ({
-        date: new Date(a.published_at || a.created_at || "").toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" }),
-        title: a.title,
-        excerpt: a.excerpt || "",
-        tag: a.tag || "Actualité",
-        image: a.image_url || coverPrepaCanada,
-      }))
-    : fallbackArticles;
+  const combined = [...mappedDb, fallbackFeatured, ...fallbackArticles];
+  const featured = combined[0];
+  const articles = combined.slice(1, 3);
 
   return (
     <section className="py-16 md:py-24 bg-background">
