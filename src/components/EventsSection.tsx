@@ -1,22 +1,45 @@
 import { Calendar } from "lucide-react";
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import coverElementaire from "@/assets/cover-elementaire.png";
 import coverSportEtudes from "@/assets/cover-sport-etudes.png";
 import actualiteHautCommissariat from "@/assets/actualite-haut-commissariat.jpg";
 
-const events = [
+const staticEvents = [
   {
     date: "Actualité",
     title: "Le Directeur Général de l'ECIN au Haut-Commissariat du Canada",
     location: "Fête du Canada — Ottawa",
     image: actualiteHautCommissariat,
-    badge: "Actualité",
   },
   { date: "15 Mars 2026", title: "Journée Portes Ouvertes", location: "Campus Bonamoussadi, Douala", image: coverElementaire },
   { date: "10 Mai 2026", title: "Concours de Bourses ECIN", location: "Campus Yaoundé, Bastos", image: coverSportEtudes },
 ];
 
 const EventsSection = () => {
+  const { data: dbEvents } = useQuery({
+    queryKey: ["events-landing"],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("events")
+        .select("*")
+        .eq("is_published", true)
+        .or(`published_at.is.null,published_at.lte.${new Date().toISOString()}`)
+        .order("event_date", { ascending: true });
+      return data || [];
+    },
+  });
+
+  const mappedDb = (dbEvents || []).map((e: any) => ({
+    date: new Date(e.event_date).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" }),
+    title: e.title,
+    location: e.location || "",
+    image: e.image_url || coverElementaire,
+  }));
+
+  const events = [...mappedDb, ...staticEvents];
+
   return (
     <section className="py-16 md:py-24 bg-background">
       <div className="container">
