@@ -1,6 +1,7 @@
 import PageLayout from "@/components/PageLayout";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
+import { openInscription, type InscriptionFlow } from "@/lib/inscription";
 import affichePrepaCanada from "@/assets/affiche-prepa-canada.jpg";
 import affichePrepaFrance from "@/assets/affiche-prepa-france.jpg";
 import coverSportEtudes from "@/assets/cover-sport-etudes.png";
@@ -86,7 +87,10 @@ const Prepas = () => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="mt-12">
             <button
               type="button"
-              onClick={() => window.dispatchEvent(new Event("ecin:open-inscription"))}
+              onClick={() => {
+                const flow: InscriptionFlow = prepa === "sport-etudes" ? "sport" : prepa === "france-angleterre" ? "france" : "canada";
+                openInscription({ flow });
+              }}
               className="inline-flex items-center justify-center bg-primary text-primary-foreground px-7 py-3.5 rounded-full text-sm font-bold hover:opacity-90 transition-opacity"
             >
               Démarrer mon inscription

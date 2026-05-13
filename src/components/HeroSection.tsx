@@ -65,14 +65,13 @@ const HeroSection = () => {
               >
                 S'inscrire maintenant
               </button>
-              <a
-                href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20en%20savoir%20plus."
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new CustomEvent("ecin:open-inscription", { detail: { flow: "general" } }))}
                 className="inline-flex items-center justify-center border-2 border-foreground/30 text-foreground px-7 py-3.5 rounded-full text-sm font-bold hover:bg-foreground/5 transition-colors"
               >
                 Nous contacter
-              </a>
+              </button>
             </div>
           </motion.div>
         </div>

@@ -78,15 +78,14 @@ const Admissions = () => {
             >
               Démarrer mon inscription
             </button>
-            <a
-              href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20recevoir%20le%20guide%20d'admission."
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent("ecin:open-inscription", { detail: { flow: "general", context: "Guide d'admission" } }))}
               className="inline-flex items-center justify-center gap-2 border-2 border-border text-foreground px-7 py-3.5 rounded-full text-sm font-bold hover:bg-secondary transition-colors"
             >
               <Download className="w-4 h-4" />
               Télécharger le Guide
-            </a>
+            </button>
           </motion.div>
         </div>
       </section>
