@@ -1,6 +1,7 @@
 import PageLayout from "@/components/PageLayout";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
+import { openInscription, type InscriptionFlow } from "@/lib/inscription";
 import coverElementaire from "@/assets/cover-elementaire.png";
 import coverSecondaire from "@/assets/cover-secondaire.png";
 
@@ -74,7 +75,7 @@ const Cycles = () => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="mt-12">
             <button
               type="button"
-              onClick={() => window.dispatchEvent(new Event("ecin:open-inscription"))}
+              onClick={() => openInscription({ flow: ((cycle as InscriptionFlow) === "secondaire" ? "secondaire" : "elementaire") })}
               className="inline-flex items-center justify-center bg-primary text-primary-foreground px-7 py-3.5 rounded-full text-sm font-bold hover:opacity-90 transition-opacity"
             >
               Démarrer mon inscription
