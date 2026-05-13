@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { openInscription } from "@/lib/inscription";
+import ArticleModal, { type Article } from "@/components/ArticleModal";
 import coverPrimaire from "@/assets/cover-primaire.png";
 import coverPrepaCanada from "@/assets/cover-prepa-canada.png";
 import coverIta from "@/assets/cover-ita.png";
 
-const fallbackFeatured = {
+const fallbackFeatured: Article = {
   date: "5 Fév 2026",
   title: "La vie au campus ECIN : immersion totale",
   excerpt: "Découvrez le quotidien de nos étudiants dans un environnement bilingue et multiculturel au cœur de Yaoundé.",
@@ -14,7 +17,7 @@ const fallbackFeatured = {
   image: coverPrimaire,
 };
 
-const fallbackArticles = [
+const fallbackArticles: Article[] = [
   {
     date: "18 Jan 2026",
     title: "Rencontre avec la Haute Commissaire du Canada au Cameroun",
@@ -32,6 +35,8 @@ const fallbackArticles = [
 ];
 
 const BlogSection = () => {
+  const [active, setActive] = useState<Article | null>(null);
+
   const { data: dbArticles } = useQuery({
     queryKey: ["blog-landing"],
     queryFn: async () => {
@@ -46,10 +51,12 @@ const BlogSection = () => {
     },
   });
 
-  const mappedDb = (dbArticles || []).map((a: any) => ({
+  const mappedDb: Article[] = (dbArticles || []).map((a: any) => ({
+    id: a.id,
     date: new Date(a.published_at || a.created_at || "").toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" }),
     title: a.title,
     excerpt: a.excerpt || "",
+    content: a.content || "",
     tag: a.tag || "Actualité",
     image: a.image_url || coverPrimaire,
   }));
@@ -57,6 +64,11 @@ const BlogSection = () => {
   const combined = [...mappedDb, fallbackFeatured, ...fallbackArticles];
   const featured = combined[0];
   const articles = combined.slice(1, 3);
+
+  const handleReserve = (e: React.MouseEvent, a: Article) => {
+    e.stopPropagation();
+    openInscription({ flow: "general", context: `Réservation: ${a.title}` });
+  };
 
   return (
     <section className="py-16 md:py-24 bg-background">
@@ -75,9 +87,12 @@ const BlogSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-3 group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-shadow flex flex-col"
+            onClick={() => setActive(featured)}
+            className="lg:col-span-3 group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-shadow flex flex-col cursor-pointer"
           >
-            <img src={featured.image} alt={featured.title} loading="lazy" className="w-full h-56 md:h-72 object-cover" />
+            <div className="aspect-video w-full bg-secondary overflow-hidden">
+              <img src={featured.image} alt={featured.title} loading="lazy" className="w-full h-full object-contain" />
+            </div>
             <div className="p-8 flex-1 flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-4">
@@ -89,7 +104,16 @@ const BlogSection = () => {
                 </h3>
                 <p className="text-muted-foreground leading-relaxed text-base">{featured.excerpt}</p>
               </div>
-              <span className="text-primary text-sm font-semibold mt-6 cursor-pointer hover:underline inline-block">Lire l'article →</span>
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <span className="text-primary text-sm font-semibold hover:underline">Lire l'article →</span>
+                <button
+                  type="button"
+                  onClick={(e) => handleReserve(e, featured)}
+                  className="ml-auto inline-flex items-center justify-center rounded-full bg-primary px-4 py-2 text-xs font-bold text-primary-foreground hover:opacity-90"
+                >
+                  Réserver
+                </button>
+              </div>
             </div>
           </motion.article>
 
@@ -101,16 +125,26 @@ const BlogSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-shadow flex-1"
+                onClick={() => setActive(a)}
+                className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-shadow flex-1 cursor-pointer"
               >
-                <img src={a.image} alt={a.title} loading="lazy" className="w-full h-36 object-cover" />
+                <div className="aspect-video w-full bg-secondary overflow-hidden">
+                  <img src={a.image} alt={a.title} loading="lazy" className="w-full h-full object-contain" />
+                </div>
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-xs font-bold text-primary bg-accent px-2 py-0.5 rounded">{a.tag}</span>
                     <span className="text-xs text-muted-foreground">{a.date}</span>
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">{a.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{a.excerpt}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{a.excerpt}</p>
+                  <button
+                    type="button"
+                    onClick={(e) => handleReserve(e, a)}
+                    className="inline-flex items-center justify-center rounded-full bg-primary px-4 py-2 text-xs font-bold text-primary-foreground hover:opacity-90"
+                  >
+                    Réserver
+                  </button>
                 </div>
               </motion.article>
             ))}
@@ -126,6 +160,8 @@ const BlogSection = () => {
           </Link>
         </div>
       </div>
+
+      <ArticleModal article={active} onClose={() => setActive(null)} />
     </section>
   );
 };
