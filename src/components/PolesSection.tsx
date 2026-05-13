@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Trophy, Monitor, BookOpen, Cpu } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Trophy, Monitor, BookOpen, Cpu, ArrowRight } from "lucide-react";
 import logoAlc from "@/assets/logo-alc.jpeg";
 import logoDti from "@/assets/logo-dti.jpeg";
 
@@ -9,24 +10,28 @@ const poles = [
     title: "DTE — Digital & Technologie Émergente",
     desc: "Certifications en technologies numériques et compétences digitales reconnues à l'international.",
     logo: logoDti,
+    href: "/programmes/dte",
   },
   {
     icon: <BookOpen className="w-8 h-8 text-primary" />,
     title: "ALC — Academic Language Center",
-    desc: "Formation en langues (Français/Anglais), préparation aux tests de niveau et certifications linguistiques.",
+    desc: "Anglais, Français, Allemand. Préparation aux tests internationaux (TOEFL, IELTS, TCF, Goethe…).",
     logo: logoAlc,
+    href: "/programmes/alc",
   },
   {
     icon: <Monitor className="w-8 h-8 text-primary" />,
     title: "ITA — Information Technology Academy",
     desc: "Certifications IT internationales, développement logiciel et compétences numériques avancées.",
     logo: null,
+    href: "/programmes/ita",
   },
   {
     icon: <Trophy className="w-8 h-8 text-primary" />,
     title: "Prépa Sport-Études",
-    desc: "Excellence académique, sport de haut niveau et accès aux bourses internationales pour les athlètes ambitieux.",
+    desc: "Excellence académique, sport de haut niveau et accès aux bourses internationales.",
     logo: null,
+    href: "/prepas/sport-etudes",
   },
 ];
 
@@ -59,15 +64,22 @@ const PolesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="bg-card border border-border rounded-xl p-8 hover:shadow-lg transition-shadow text-center"
             >
-              {pole.logo ? (
-                <img src={pole.logo} alt={pole.title} className="h-16 mx-auto mb-4 object-contain" loading="lazy" />
-              ) : (
-                <div className="flex justify-center mb-4">{pole.icon}</div>
-              )}
-              <h3 className="text-lg font-bold text-foreground mb-3">{pole.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{pole.desc}</p>
+              <Link
+                to={pole.href}
+                className="group relative flex h-full flex-col items-center rounded-xl border border-border bg-card p-8 text-center transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl"
+              >
+                {pole.logo ? (
+                  <img src={pole.logo} alt={pole.title} className="h-16 mx-auto mb-4 object-contain" loading="lazy" />
+                ) : (
+                  <div className="flex justify-center mb-4">{pole.icon}</div>
+                )}
+                <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors">{pole.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{pole.desc}</p>
+                <span className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-primary opacity-0 transition-opacity group-hover:opacity-100">
+                  Découvrir <ArrowRight className="h-3.5 w-3.5" />
+                </span>
+              </Link>
             </motion.div>
           ))}
         </div>
