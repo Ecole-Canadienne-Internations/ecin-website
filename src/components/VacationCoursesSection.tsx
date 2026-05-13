@@ -90,7 +90,7 @@ const VacationCoursesSection = () => {
                   src={c.image}
                   alt={c.title}
                   loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-3 right-3 bg-primary text-primary-foreground text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
                   {c.tag}
@@ -108,14 +108,13 @@ const VacationCoursesSection = () => {
         </div>
 
         <div className="text-center">
-          <a
-            href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20inscrire%20mon%20enfant%20aux%20cours%20de%20vacances."
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent("ecin:open-inscription", { detail: { flow: "general", context: "Cours de vacances" } }))}
             className="inline-flex items-center justify-center bg-primary text-primary-foreground px-7 py-3.5 rounded-full text-sm font-bold hover:opacity-90 transition-opacity"
           >
             Inscrire mon enfant
-          </a>
+          </button>
         </div>
       </div>
     </section>

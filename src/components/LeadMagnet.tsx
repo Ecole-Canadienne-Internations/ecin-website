@@ -20,14 +20,13 @@ const LeadMagnet = () => {
           <p className="text-muted-foreground mb-8">
             5 étapes pour envoyer votre enfant étudier au Canada depuis le Cameroun.
           </p>
-          <a
-            href="https://wa.me/237681263743?text=Bonjour%2C%20je%20souhaite%20recevoir%20le%20guide%20gratuit."
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent("ecin:open-inscription", { detail: { flow: "general", context: "Guide gratuit" } }))}
             className="inline-block bg-primary text-primary-foreground px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
           >
             Recevoir le guide gratuitement
-          </a>
+          </button>
         </motion.div>
       </div>
     </section>

@@ -62,7 +62,9 @@ const EventsSection = () => {
               transition={{ delay: i * 0.1 }}
               className="bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-shadow"
             >
-              <img src={ev.image} alt={ev.title} loading="lazy" className="w-full h-44 object-cover" />
+              <div className="aspect-[4/3] w-full overflow-hidden bg-secondary">
+                <img src={ev.image} alt={ev.title} loading="lazy" className="w-full h-full object-contain" />
+              </div>
               <div className="p-6">
                 <div className="flex items-center gap-2 text-primary text-sm font-semibold mb-3">
                   <Calendar className="w-4 h-4" />
@@ -70,14 +72,13 @@ const EventsSection = () => {
                 </div>
                 <h3 className="text-lg font-bold text-foreground mb-3">{ev.title}</h3>
                 <p className="text-sm text-muted-foreground mb-5">{ev.location}</p>
-                <a
-                  href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20réserver%20ma%20place."
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={() => window.dispatchEvent(new CustomEvent("ecin:open-inscription", { detail: { flow: "general", context: `Réservation: ${ev.title}` } }))}
                   className="inline-block w-full text-center bg-primary text-primary-foreground py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity"
                 >
                   Réserver ma place
-                </a>
+                </button>
               </div>
             </motion.div>
           ))}

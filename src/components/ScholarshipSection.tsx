@@ -44,7 +44,7 @@ const ScholarshipSection = () => {
                   src={img}
                   alt={`Affiche concours de bourse ECIN ${i + 1}`}
                   loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
             </motion.div>
@@ -52,14 +52,13 @@ const ScholarshipSection = () => {
         </div>
 
         <div className="text-center">
-          <a
-            href="https://wa.me/16476926009?text=Bonjour%2C%20je%20souhaite%20avoir%20des%20informations%20sur%20le%20concours%20de%20bourse%20ECIN."
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent("ecin:open-inscription", { detail: { flow: "general", context: "Concours de Bourse ECIN" } }))}
             className="inline-flex items-center justify-center bg-primary text-primary-foreground px-7 py-3.5 rounded-full text-sm font-bold hover:opacity-90 transition-opacity"
           >
             En savoir plus sur les bourses
-          </a>
+          </button>
         </div>
       </div>
     </section>
