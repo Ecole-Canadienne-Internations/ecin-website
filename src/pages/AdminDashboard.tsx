@@ -569,8 +569,8 @@ const LeadsTable = ({ leads, onStatus, canDelete, onDelete }: { leads: any[]; on
         </thead>
         <tbody>
           {leads.map((lead) => (
-            <>
-            <tr key={lead.id} className="group transition hover:bg-zinc-50/70 align-top">
+            <Fragment key={lead.id}>
+            <tr className="group transition hover:bg-zinc-50/70 align-top">
               <td className="border-b border-zinc-100 px-4 py-3.5">
                 <div className="flex items-start gap-3">
                   <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-xs font-bold text-zinc-700" style={{ background: avatarColor(lead.full_name || "?") }}>
