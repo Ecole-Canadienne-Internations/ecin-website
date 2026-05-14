@@ -641,7 +641,7 @@ const LeadsTable = ({ leads, onStatus, canDelete, onDelete }: { leads: any[]; on
                 </td>
               </tr>
             )}
-            </>
+            </Fragment>
           ))}
         </tbody>
       </table>
