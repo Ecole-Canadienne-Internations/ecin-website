@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
@@ -569,15 +569,15 @@ const LeadsTable = ({ leads, onStatus, canDelete, onDelete }: { leads: any[]; on
         </thead>
         <tbody>
           {leads.map((lead) => (
-            <tr key={lead.id} className="group transition hover:bg-zinc-50/70">
+            <Fragment key={lead.id}>
+            <tr className="group transition hover:bg-zinc-50/70 align-top">
               <td className="border-b border-zinc-100 px-4 py-3.5">
-                <div className="flex items-center gap-3">
+                <div className="flex items-start gap-3">
                   <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-xs font-bold text-zinc-700" style={{ background: avatarColor(lead.full_name || "?") }}>
                     {initials(lead.full_name)}
                   </div>
                   <div className="min-w-0">
-                    <p className="truncate text-sm font-semibold text-zinc-900">{lead.full_name}</p>
-                    {lead.message && <p className="truncate text-xs text-zinc-500 max-w-[220px]">{lead.message}</p>}
+                    <p className="text-sm font-semibold text-zinc-900 break-words">{lead.full_name}</p>
                   </div>
                 </div>
               </td>
@@ -592,13 +592,13 @@ const LeadsTable = ({ leads, onStatus, canDelete, onDelete }: { leads: any[]; on
                     <Phone className="h-3 w-3 text-zinc-400" /> {lead.phone}
                   </a>
                   {lead.email && (
-                    <a href={`mailto:${lead.email}`} className="flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-900">
+                    <a href={`mailto:${lead.email}`} className="flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-900 break-all">
                       <Mail className="h-3 w-3 text-zinc-400" /> {lead.email}
                     </a>
                   )}
                 </div>
               </td>
-              <td className="border-b border-zinc-100 px-4 py-3.5 text-xs text-zinc-500">
+              <td className="border-b border-zinc-100 px-4 py-3.5 text-xs text-zinc-500 whitespace-nowrap">
                 {formatDate(lead.created_at)}
               </td>
               <td className="border-b border-zinc-100 px-4 py-3.5">
@@ -631,6 +631,17 @@ const LeadsTable = ({ leads, onStatus, canDelete, onDelete }: { leads: any[]; on
                 </div>
               </td>
             </tr>
+            {lead.message && (
+              <tr key={`${lead.id}-details`} className="bg-zinc-50/40">
+                <td colSpan={6} className="border-b border-zinc-100 px-4 pb-4 pt-0">
+                  <div className="rounded-lg border border-zinc-200 bg-white p-3">
+                    <p className="mb-1 text-[10px] font-bold uppercase tracking-wider text-zinc-500">Qualification du prospect</p>
+                    <pre className="whitespace-pre-wrap break-words font-sans text-xs leading-relaxed text-zinc-700">{lead.message}</pre>
+                  </div>
+                </td>
+              </tr>
+            )}
+            </Fragment>
           ))}
         </tbody>
       </table>

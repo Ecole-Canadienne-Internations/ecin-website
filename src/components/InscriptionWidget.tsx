@@ -281,8 +281,28 @@ const buildSteps = (flow: InscriptionFlow, answers: Record<string, string>): { s
       return { steps: cycleSteps("Secondaire"), programme: "DTE", flowLabel: "École Secondaire / DÉSO" };
     case "general":
     default: {
-      const programme = (answers.programme as Programme) || "DTE";
-      return { steps: [generalProgrammeStep], programme, flowLabel: answers.programme || "Inscription" };
+      const chosen = answers.programme as Programme | undefined;
+      let extra: QuestionStep[] = [];
+      let label = answers.programme || "Inscription";
+      if (chosen === "ALC") {
+        const lang = answers.langue;
+        const langSteps = lang === "Anglais" ? enSteps : lang === "Français" ? frSteps : lang === "Allemand" ? deSteps : [];
+        extra = [alcLanguageStep, ...langSteps];
+        label = lang ? `ALC ${lang}` : "ALC — Langues";
+      } else if (chosen === "DTE") {
+        extra = dteSteps;
+        label = "DTE — Digital";
+      } else if (chosen === "ITA") {
+        extra = itaSteps;
+        label = "ITA — Informatique";
+      } else if (chosen === "Prépa Sport-Études") {
+        extra = sportSteps;
+      } else if (chosen === "Prépa Canada") {
+        extra = canadaSteps;
+      } else if (chosen === "Prépa France" || chosen === "Prépa Angleterre") {
+        extra = franceSteps;
+      }
+      return { steps: [generalProgrammeStep, ...extra], programme: chosen || "DTE", flowLabel: label };
     }
   }
 };
