@@ -14,6 +14,7 @@ const Admissions = lazy(() => import("./pages/Admissions"));
 const Alumni = lazy(() => import("./pages/Alumni"));
 const EcinEnBref = lazy(() => import("./pages/EcinEnBref"));
 const Blog = lazy(() => import("./pages/Blog"));
+const BlogArticle = lazy(() => import("./pages/BlogArticle"));
 const Login = lazy(() => import("./pages/Login"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/admissions" element={<Admissions />} />
             <Route path="/alumni" element={<Alumni />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogArticle />} />
             <Route path="/login" element={<Login />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="*" element={<NotFound />} />

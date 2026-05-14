@@ -45,7 +45,7 @@ const ArticleModal = ({ article, onClose }: Props) => {
             </button>
 
             {article.image && (
-              <div className="aspect-video w-full bg-secondary">
+              <div className="aspect-video w-full bg-background">
                 <img src={article.image} alt={article.title} className="h-full w-full object-contain" />
               </div>
             )}

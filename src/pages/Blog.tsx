@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
 import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
@@ -8,6 +9,7 @@ import ArticleModal, { type Article } from "@/components/ArticleModal";
 
 const Blog = () => {
   const [active, setActive] = useState<Article | null>(null);
+  const navigate = useNavigate();
 
   const { data: articles, isLoading } = useQuery({
     queryKey: ["blog-all"],
@@ -60,11 +62,11 @@ const Blog = () => {
                     key={article.id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    onClick={() => setActive(a)}
+                    onClick={() => navigate(`/blog/${article.id}`)}
                     className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
                   >
                     {a.image && (
-                      <div className="aspect-video w-full bg-secondary">
+                      <div className="aspect-video w-full bg-background">
                         <img src={a.image} alt={a.title} loading="lazy" className="w-full h-full object-contain" />
                       </div>
                     )}

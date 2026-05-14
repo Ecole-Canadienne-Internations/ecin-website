@@ -85,7 +85,7 @@ const VacationCoursesSection = () => {
               transition={{ delay: i * 0.08 }}
               className="group bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all"
             >
-              <div className="relative aspect-[3/4] overflow-hidden bg-secondary">
+              <div className="relative aspect-[3/4] overflow-hidden bg-background">
                 <img
                   src={c.image}
                   alt={c.title}

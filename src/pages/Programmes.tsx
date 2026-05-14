@@ -135,7 +135,7 @@ const Programmes = () => {
                   transition={{ delay: i * 0.1 }}
                   className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all"
                 >
-                  <div className="aspect-[4/3] w-full bg-secondary overflow-hidden">
+                  <div className="aspect-[4/3] w-full bg-background overflow-hidden">
                     <img
                       src={lang.image}
                       alt={`Affiche ALC ${lang.language}`}
