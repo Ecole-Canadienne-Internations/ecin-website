@@ -77,13 +77,13 @@ const BlogArticle = () => {
               )}
 
               <div className="mt-12 pt-8 border-t border-border">
-                <button
-                  type="button"
-                  onClick={() => openInscription({ flow: "general", context: `Réservation: ${article.title}` })}
-                  className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-bold text-primary-foreground hover:opacity-90"
-                >
-                  Réserver <ArrowRight className="h-4 w-4" />
-                </button>
+                <a
+  href="https://forms.gle/FZn4s1YvmnQVpLX5A" // Remplace par ton lien
+  onClick={() => openInscription({ flow: "general", context: `Réservation: ${article.title}` })}
+  className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-bold text-primary-foreground hover:opacity-90"
+>
+  Réserver <ArrowRight className="h-4 w-4" />
+</a>
               </div>
             </>
           )}
