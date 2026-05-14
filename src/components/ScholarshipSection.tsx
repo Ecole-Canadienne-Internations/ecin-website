@@ -39,7 +39,7 @@ const ScholarshipSection = () => {
               transition={{ delay: i * 0.1 }}
               className="group rounded-2xl overflow-hidden border border-border bg-card hover:shadow-xl hover:-translate-y-1 transition-all"
             >
-              <div className="aspect-[3/4] overflow-hidden bg-secondary">
+              <div className="aspect-[3/4] overflow-hidden bg-background">
                 <img
                   src={img}
                   alt={`Affiche concours de bourse ECIN ${i + 1}`}

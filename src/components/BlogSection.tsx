@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { openInscription } from "@/lib/inscription";
@@ -36,6 +36,7 @@ const fallbackArticles: Article[] = [
 
 const BlogSection = () => {
   const [active, setActive] = useState<Article | null>(null);
+  const navigate = useNavigate();
 
   const { data: dbArticles } = useQuery({
     queryKey: ["blog-landing"],
@@ -70,6 +71,11 @@ const BlogSection = () => {
     openInscription({ flow: "general", context: `Réservation: ${a.title}` });
   };
 
+  const openArticle = (a: Article) => {
+    if (a.id) navigate(`/blog/${a.id}`);
+    else setActive(a);
+  };
+
   return (
     <section className="py-16 md:py-24 bg-background">
       <div className="container">
@@ -87,10 +93,10 @@ const BlogSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            onClick={() => setActive(featured)}
+            onClick={() => openArticle(featured)}
             className="lg:col-span-3 group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-shadow flex flex-col cursor-pointer"
           >
-            <div className="aspect-video w-full bg-secondary overflow-hidden">
+            <div className="aspect-video w-full bg-background overflow-hidden">
               <img src={featured.image} alt={featured.title} loading="lazy" className="w-full h-full object-contain" />
             </div>
             <div className="p-8 flex-1 flex flex-col justify-between">
@@ -125,10 +131,10 @@ const BlogSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                onClick={() => setActive(a)}
+                onClick={() => openArticle(a)}
                 className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-shadow flex-1 cursor-pointer"
               >
-                <div className="aspect-video w-full bg-secondary overflow-hidden">
+                <div className="aspect-video w-full bg-background overflow-hidden">
                   <img src={a.image} alt={a.title} loading="lazy" className="w-full h-full object-contain" />
                 </div>
                 <div className="p-6">

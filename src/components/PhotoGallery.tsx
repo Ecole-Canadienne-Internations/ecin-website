@@ -64,13 +64,13 @@ const PhotoGallery = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className={`${photo.span} rounded-xl overflow-hidden group bg-secondary`}
+              className={`${photo.span} rounded-xl overflow-hidden group`}
             >
               <img
                 src={photo.src}
                 alt={photo.alt}
                 loading="lazy"
-                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </motion.div>
           ))}

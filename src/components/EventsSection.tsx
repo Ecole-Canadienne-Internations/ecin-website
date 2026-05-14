@@ -62,7 +62,7 @@ const EventsSection = () => {
               transition={{ delay: i * 0.1 }}
               className="bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-shadow"
             >
-              <div className="aspect-[4/3] w-full overflow-hidden bg-secondary">
+              <div className="aspect-[4/3] w-full overflow-hidden bg-background">
                 <img src={ev.image} alt={ev.title} loading="lazy" className="w-full h-full object-contain" />
               </div>
               <div className="p-6">
